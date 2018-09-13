@@ -1,0 +1,53 @@
+# Copyright 2018 the original author or authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+[buildpack]
+id = "org.cloudfoundry.openjdk"
+name = "Cloud Foundry OpenJDK Buildpack"
+version = "1.0.0-BUILD-SNAPSHOT"
+
+[[stacks]]
+id = "packs/build"
+
+[[metadata.dependencies]]
+id      = "openjdk-jre"
+name    = "OpenJDK JRE"
+version = "1.8.181"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-1.8.0_181.tar.gz"
+sha256  = "c7608fb24379c02f5060b29f072402dbe2ce0d9b322899480fc1d952ab5c3003"
+stacks  = [ "packs/build" ]
+
+[[metadata.dependencies]]
+id      = "openjdk-jre"
+name    = "OpenJDK JRE"
+version = "10.0.2"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-10.0.2_13.tar.gz"
+sha256  = "f8d4c27c19b9f404ffcd720583c9b70c8a4ac75988aa050ab1090f7baadce64e"
+stacks  = [ "packs/build" ]
+
+[[metadata.dependencies]]
+id      = "openjdk-jdk"
+name    = "OpenJDK JDK"
+version = "1.8.181"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-1.8.0_181.tar.gz"
+sha256  = "c1a1d9c0af8700648ee463def887c56b40b1a0e232a7e31027f4f5c1b4f01723"
+stacks  = [ "packs/build" ]
+
+[[metadata.dependencies]]
+id      = "openjdk-jdk"
+name    = "OpenJDK JDK"
+version = "10.0.2"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-10.0.2_13.tar.gz"
+sha256  = "a64431040efcef86e3cb5d2db3092799537391f49a75cdce1874deccf4296272"
+stacks  = [ "packs/build" ]
