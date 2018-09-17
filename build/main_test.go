@@ -17,35 +17,29 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"testing"
 
-	"github.com/cloudfoundry/libjavabuildpack"
-	"github.com/cloudfoundry/openjdk-buildpack"
+	"github.com/cloudfoundry/libjavabuildpack/test"
+	"github.com/sclevine/spec"
+	"github.com/sclevine/spec/report"
 )
 
-func main() {
-	build, err := libjavabuildpack.DefaultBuild()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to initialize Build: %s\n", err.Error())
-		os.Exit(101)
-		return
-	}
+func TestBuild(t *testing.T) {
+	spec.Run(t, "Build", testBuild, spec.Report(report.Terminal{}))
+}
 
-	build.Logger.FirstLine(build.Logger.PrettyVersion(build.Buildpack))
+func testBuild(t *testing.T, when spec.G, it spec.S) {
 
-	if jdk, ok, err := openjdk_buildpack.NewJDK(build) ; err != nil {
-		build.Logger.Info(err.Error())
-		build.Failure(102)
-		return
-	} else if ok {
-		if err := jdk.Contribute() ; err != nil {
-			build.Logger.Info(err.Error())
-			build.Failure(103)
-			return
+	it("always passes", func() {
+		f := test.NewEnvironmentFactory(t)
+		defer f.Restore()
+
+		f.Console.In(t, "")
+
+		main()
+
+		if *f.ExitStatus != 0 {
+			t.Errorf("os.Exit = %d, expected 0", *f.ExitStatus)
 		}
-	}
-
-	build.Success()
-	return
+	})
 }

@@ -17,11 +17,9 @@
 package main
 
 import (
-	"path/filepath"
-	"strings"
 	"testing"
 
-	"github.com/cloudfoundry/libjavabuildpack"
+	"github.com/cloudfoundry/libjavabuildpack/test"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -33,35 +31,15 @@ func TestDetect(t *testing.T) {
 func testDetect(t *testing.T, when spec.G, it spec.S) {
 
 	it("always passes", func() {
-		root := libjavabuildpack.ScratchDir(t, "detect")
-		defer libjavabuildpack.ReplaceWorkingDirectory(t, root)()
+		f := test.NewEnvironmentFactory(t)
+		defer f.Restore()
 
-		defer libjavabuildpack.ReplaceEnv(t, "PACK_STACK_ID", "test-stack")()
-
-		c, d := libjavabuildpack.ReplaceConsole(t)
-		defer d()
-		c.In(t, "")
-
-		err := libjavabuildpack.WriteToFile(strings.NewReader(""), filepath.Join(root, "buildpack.toml"), 0644)
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		defer libjavabuildpack.ReplaceArgs(t, filepath.Join(root, "bin", "test"))()
-
-		actual, d := libjavabuildpack.CaptureExitStatus(t)
-		defer d()
+		f.Console.In(t, "")
 
 		main()
 
-		if *actual != 0 {
-			t.Errorf("os.Exit = %d, expected 0", *actual)
-		}
-
-		actualStdout := c.Out(t)
-		if actualStdout != "" {
-			t.Errorf("stdout = %s, expected empty", actualStdout)
+		if *f.ExitStatus != 0 {
+			t.Errorf("os.Exit = %d, expected 0", *f.ExitStatus)
 		}
 	})
-
 }

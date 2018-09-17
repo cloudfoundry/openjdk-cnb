@@ -21,14 +21,17 @@ import (
 	"os"
 
 	"github.com/buildpack/libbuildpack"
+	"github.com/cloudfoundry/libjavabuildpack"
 )
 
 func main() {
-	detect, err := libbuildpack.DefaultDetect()
+	detect, err := libjavabuildpack.DefaultDetect()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err.Error())
 		os.Exit(101)
+		return
 	}
 
 	detect.Pass(libbuildpack.BuildPlan{})
+	return
 }
