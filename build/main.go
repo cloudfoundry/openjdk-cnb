@@ -46,6 +46,18 @@ func main() {
 		}
 	}
 
+	if jre, ok, err := openjdk_buildpack.NewJRE(build) ; err != nil {
+		build.Logger.Info(err.Error())
+		build.Failure(102)
+		return
+	} else if ok {
+		if err := jre.Contribute() ; err != nil {
+			build.Logger.Info(err.Error())
+			build.Failure(103)
+			return
+		}
+	}
+
 	build.Success()
 	return
 }

@@ -20,6 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/buildpack/libbuildpack"
 	"github.com/cloudfoundry/libjavabuildpack"
 	"github.com/cloudfoundry/libjavabuildpack/test"
 	"github.com/cloudfoundry/openjdk-buildpack"
@@ -35,9 +36,8 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 
 	it("returns true if build plan exists", func() {
 		f := test.NewBuildFactory(t)
-		f.SetStack(t, "test-stack")
 		f.AddDependency(t, openjdk_buildpack.JDKDependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency)
+		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency, libbuildpack.BuildPlanDependency{})
 
 		_, ok, err := openjdk_buildpack.NewJDK(f.Build)
 		if err != nil {
@@ -62,9 +62,8 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 
 	it("contributes JDK", func() {
 		f := test.NewBuildFactory(t)
-		f.SetStack(t, "test-stack")
 		f.AddDependency(t, openjdk_buildpack.JDKDependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency)
+		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency, libbuildpack.BuildPlanDependency{})
 
 		j, _, err := openjdk_buildpack.NewJDK(f.Build)
 		if err != nil {
