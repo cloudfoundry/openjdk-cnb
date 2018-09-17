@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/buildpack/libbuildpack"
-	"github.com/cloudfoundry/libjavabuildpack"
 	"github.com/cloudfoundry/libjavabuildpack/test"
 	"github.com/cloudfoundry/openjdk-buildpack"
 	"github.com/sclevine/spec"
@@ -75,8 +74,8 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 		}
 
 		layerRoot := filepath.Join(f.Build.Cache.Root, "openjdk-jdk")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "env", "JAVA_HOME.override"), 0644, layerRoot)
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "env", "JDK_HOME.override"), 0644, layerRoot)
+		test.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
+		test.BeFileLike(t, filepath.Join(layerRoot, "env", "JAVA_HOME.override"), 0644, layerRoot)
+		test.BeFileLike(t, filepath.Join(layerRoot, "env", "JDK_HOME.override"), 0644, layerRoot)
 	})
 }

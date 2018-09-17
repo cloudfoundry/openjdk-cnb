@@ -22,7 +22,6 @@ import (
 	"testing"
 
 	"github.com/buildpack/libbuildpack"
-	"github.com/cloudfoundry/libjavabuildpack"
 	"github.com/cloudfoundry/libjavabuildpack/test"
 	"github.com/cloudfoundry/openjdk-buildpack"
 	"github.com/sclevine/spec"
@@ -78,8 +77,8 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		}
 
 		layerRoot := filepath.Join(f.Build.Cache.Root, "openjdk-jre")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "env", "JAVA_HOME.override"), 0644, layerRoot)
+		test.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
+		test.BeFileLike(t, filepath.Join(layerRoot, "env", "JAVA_HOME.override"), 0644, layerRoot)
 	})
 
 	it("contributes JRE to launch", func() {
@@ -99,8 +98,8 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		}
 
 		layerRoot := filepath.Join(f.Build.Launch.Root, "openjdk-jre")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
-		libjavabuildpack.BeFileLike(t, filepath.Join(layerRoot, "profile.d", "java-home"), 0644,
+		test.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
+		test.BeFileLike(t, filepath.Join(layerRoot, "profile.d", "java-home"), 0644,
 			fmt.Sprintf("export JAVA_HOME=%s", layerRoot))
 	})
 }
