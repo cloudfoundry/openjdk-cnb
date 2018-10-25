@@ -37,10 +37,7 @@ func (j JDK) Contribute() error {
 			return err
 		}
 
-		layer.Logger.SubsequentLine("Writing JAVA_HOME")
 		layer.OverrideEnv("JAVA_HOME", layer.Root)
-
-		layer.Logger.SubsequentLine("Writing JDK_HOME")
 		layer.OverrideEnv("JDK_HOME", layer.Root)
 
 		return nil

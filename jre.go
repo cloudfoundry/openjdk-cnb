@@ -50,7 +50,6 @@ func (j JRE) Contribute() error {
 				return err
 			}
 
-			layer.Logger.SubsequentLine("Writing JAVA_HOME")
 			layer.OverrideEnv("JAVA_HOME", layer.Root)
 
 			return nil
@@ -64,7 +63,6 @@ func (j JRE) Contribute() error {
 				return err
 			}
 
-			layer.Logger.SubsequentLine("Writing .profile.d/java-home")
 			layer.WriteProfile("java-home", "export JAVA_HOME=%s", layer.Root)
 
 			return nil
