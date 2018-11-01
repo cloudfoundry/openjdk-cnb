@@ -7,7 +7,7 @@ This buildpack is designed to work in collaboration with other buildpacks which 
 The detection phase always passes and contributes nothing to the build plan, depending on other buildpacks to request contributions.
 
 ## Build
-If another buildpack has requested a contribution of
+If the build plan contains
 
 * `openjdk-jdk`
   * Contributes a JDK to a cache layer with all commands on `$PATH`
