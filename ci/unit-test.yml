@@ -11,7 +11,7 @@ inputs:
 - name: openjdk-buildpack
 
 caches:
-- path: go-build
+- path: go-module-cache
 
 run:
   path: openjdk-buildpack/ci/unit-test.sh
