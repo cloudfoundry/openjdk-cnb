@@ -63,7 +63,7 @@ func (j JRE) Contribute() error {
 				return err
 			}
 
-			layer.WriteProfile("java-home", "export JAVA_HOME=%s", layer.Root)
+			layer.WriteProfile("java-home", `export JAVA_HOME="%s"`, layer.Root)
 
 			return nil
 		})

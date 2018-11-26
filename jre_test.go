@@ -100,6 +100,6 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		layerRoot := filepath.Join(f.Build.Launch.Root, "openjdk-jre")
 		test.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
 		test.BeFileLike(t, filepath.Join(layerRoot, "profile.d", "java-home"), 0644,
-			fmt.Sprintf("export JAVA_HOME=%s", layerRoot))
+			fmt.Sprintf(`export JAVA_HOME="%s"`, layerRoot))
 	})
 }
