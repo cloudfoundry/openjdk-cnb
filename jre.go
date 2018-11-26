@@ -46,7 +46,7 @@ func (j JRE) Contribute() error {
 	if j.buildContribution {
 		return j.buildLayer.Contribute(func(artifact string, layer libjavabuildpack.DependencyCacheLayer) error {
 			layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
-			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0) ; err != nil {
+			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0); err != nil {
 				return err
 			}
 
@@ -59,7 +59,7 @@ func (j JRE) Contribute() error {
 	if j.launchContribution {
 		return j.launchLayer.Contribute(func(artifact string, layer libjavabuildpack.DependencyLaunchLayer) error {
 			layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
-			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0) ; err != nil {
+			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0); err != nil {
 				return err
 			}
 
