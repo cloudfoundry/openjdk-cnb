@@ -14,34 +14,42 @@
  * limitations under the License.
  */
 
-package openjdk_buildpack
+package jdk
 
 import (
 	"fmt"
 
-	"github.com/cloudfoundry/libjavabuildpack"
+	"github.com/cloudfoundry/libcfbuildpack/build"
+	"github.com/cloudfoundry/libcfbuildpack/layers"
 )
 
-const JDKDependency = "openjdk-jdk"
+// Dependency is a build plan dependency indicating a requirement for a JDK.
+const Dependency = "openjdk-jdk"
 
 // JDK represents a JDK contribution by the buildpack.
 type JDK struct {
-	layer libjavabuildpack.DependencyCacheLayer
+	layer layers.DependencyLayer
 }
 
 // Contribute contributes an expanded JDK to a cache layer.
 func (j JDK) Contribute() error {
-	return j.layer.Contribute(func(artifact string, layer libjavabuildpack.DependencyCacheLayer) error {
+	return j.layer.Contribute(func(artifact string, layer layers.DependencyLayer) error {
 		layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
-		if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0) ; err != nil {
+
+		if err := layers.ExtractTarGz(artifact, layer.Root, 0); err != nil {
 			return err
 		}
 
-		layer.OverrideEnv("JAVA_HOME", layer.Root)
-		layer.OverrideEnv("JDK_HOME", layer.Root)
+		if err := layer.OverrideBuildEnv("JAVA_HOME", layer.Root); err != nil {
+			return err;
+		}
+
+		if err := layer.OverrideBuildEnv("JDK_HOME", layer.Root); err != nil {
+			return err;
+		}
 
 		return nil
-	})
+	}, layers.Build, layers.Cache);
 }
 
 // String makes JDK satisfy the Stringer interface.
@@ -50,8 +58,8 @@ func (j JDK) String() string {
 }
 
 // NewJDK creates a new JDK instance. OK is true if build plan contains "openjdk-jdk" dependency, otherwise false.
-func NewJDK(build libjavabuildpack.Build) (JDK, bool, error) {
-	bp, ok := build.BuildPlan[JDKDependency]
+func NewJDK(build build.Build) (JDK, bool, error) {
+	bp, ok := build.BuildPlan[Dependency]
 	if !ok {
 		return JDK{}, false, nil
 	}
@@ -61,10 +69,10 @@ func NewJDK(build libjavabuildpack.Build) (JDK, bool, error) {
 		return JDK{}, false, err
 	}
 
-	dep, err := deps.Best(JDKDependency, bp.Version, build.Stack)
+	dep, err := deps.Best(Dependency, bp.Version, build.Stack)
 	if err != nil {
 		return JDK{}, false, err
 	}
 
-	return JDK{build.Cache.DependencyLayer(dep)}, true, nil
+	return JDK{build.Layers.DependencyLayer(dep)}, true, nil
 }

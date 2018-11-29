@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package openjdk_buildpack
+package jre
 
 import (
 	"fmt"
 
-	"github.com/cloudfoundry/libjavabuildpack"
+	"github.com/cloudfoundry/libcfbuildpack/build"
+	"github.com/cloudfoundry/libcfbuildpack/layers"
 )
 
 const (
 	// BuildContribution is a build plan dependency key indicating a requirement for the dependency at build time.
 	BuildContribution string = "build"
 
-	// JREDependency is a build plan dependency indicating a requirement for a JRE.
-	JREDependency string = "openjdk-jre"
+	// Dependency is a build plan dependency indicating a requirement for a JRE.
+	Dependency string = "openjdk-jre"
 
 	// LaunchContribution is a build plan dependency yet indicate a requirement for the dependency at launch time.
 	LaunchContribution string = "launch"
@@ -36,51 +37,46 @@ const (
 // JRE represents a JRE contribution by the buildpack.
 type JRE struct {
 	buildContribution  bool
-	buildLayer         libjavabuildpack.DependencyCacheLayer
+	layer              layers.DependencyLayer
 	launchContribution bool
-	launchLayer        libjavabuildpack.DependencyLaunchLayer
 }
 
 // Contribute contributes an expanded JRE to a cache layer.
 func (j JRE) Contribute() error {
-	if j.buildContribution {
-		return j.buildLayer.Contribute(func(artifact string, layer libjavabuildpack.DependencyCacheLayer) error {
-			layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
-			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0); err != nil {
-				return err
-			}
+	return j.layer.Contribute(func(artifact string, layer layers.DependencyLayer) error {
+		layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
 
-			layer.OverrideEnv("JAVA_HOME", layer.Root)
+		if err := layers.ExtractTarGz(artifact, layer.Root, 0); err != nil {
+			return err
+		}
 
-			return nil
-		})
-	}
-
-	if j.launchContribution {
-		return j.launchLayer.Contribute(func(artifact string, layer libjavabuildpack.DependencyLaunchLayer) error {
-			layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
-			if err := libjavabuildpack.ExtractTarGz(artifact, layer.Root, 0); err != nil {
-				return err
-			}
-
-			layer.WriteProfile("java-home", `export JAVA_HOME="%s"`, layer.Root)
-
-			return nil
-		})
-	}
-
-	return nil
+		return layer.OverrideSharedEnv("JAVA_HOME", layer.Root)
+	}, j.flags()...)
 }
 
 // String makes JRE satisfy the Stringer interface.
 func (j JRE) String() string {
-	return fmt.Sprintf("JRE{ buildContribution: %t, buildLayer: %s, launchContribution: %t, launchLayer: %s }",
-		j.buildContribution, j.buildLayer, j.launchContribution, j.launchLayer)
+	return fmt.Sprintf("JRE{ buildContribution: %t, layer: %s, launchContribution: %t }",
+		j.buildContribution, j.layer, j.launchContribution)
+}
+
+func (j JRE) flags() []layers.Flag {
+	flags := []layers.Flag{layers.Cache}
+
+	if j.buildContribution {
+		flags = append(flags, layers.Build)
+	}
+
+	if j.launchContribution {
+		flags = append(flags, layers.Launch)
+	}
+
+	return flags
 }
 
 // NewJRE creates a new JRE instance. OK is true if build plan contains "openjdk-jre" dependency, otherwise false.
-func NewJRE(build libjavabuildpack.Build) (JRE, bool, error) {
-	bp, ok := build.BuildPlan[JREDependency]
+func NewJRE(build build.Build) (JRE, bool, error) {
+	bp, ok := build.BuildPlan[Dependency]
 	if !ok {
 		return JRE{}, false, nil
 	}
@@ -90,21 +86,19 @@ func NewJRE(build libjavabuildpack.Build) (JRE, bool, error) {
 		return JRE{}, false, err
 	}
 
-	dep, err := deps.Best(JREDependency, bp.Version, build.Stack)
+	dep, err := deps.Best(Dependency, bp.Version, build.Stack)
 	if err != nil {
 		return JRE{}, false, err
 	}
 
-	jre := JRE{}
+	jre := JRE{layer: build.Layers.DependencyLayer(dep)}
 
 	if _, ok := bp.Metadata[BuildContribution]; ok {
 		jre.buildContribution = true
-		jre.buildLayer = build.Cache.DependencyLayer(dep)
 	}
 
 	if _, ok := bp.Metadata[LaunchContribution]; ok {
 		jre.launchContribution = true
-		jre.launchLayer = build.Launch.DependencyLayer(dep)
 	}
 
 	return jre, true, nil
