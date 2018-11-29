@@ -20,23 +20,28 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cloudfoundry/libjavabuildpack"
+	packagerPkg "github.com/cloudfoundry/libcfbuildpack/packager"
 )
 
 func main() {
-	packager, err := libjavabuildpack.DefaultPackager()
+	packager, err := packagerPkg.DefaultPackager()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to initialize Packager: %s\n", err.Error())
+		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Packager: %s\n", err.Error())
 		os.Exit(101)
-		return
 	}
 
-	if err = packager.Create(); err != nil {
+	if code, err := p(packager); err != nil {
 		packager.Logger.Info(err.Error())
-		os.Exit(102)
-		return
+		os.Exit(code)
+	} else {
+		os.Exit(code)
+	}
+}
+
+func p(packager packagerPkg.Packager) (int, error) {
+	if err := packager.Create(); err != nil {
+		return 102, err
 	}
 
-	os.Exit(0)
-	return
+	return 0, nil
 }

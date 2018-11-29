@@ -20,44 +20,45 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cloudfoundry/libjavabuildpack"
-	"github.com/cloudfoundry/openjdk-buildpack"
+	"github.com/buildpack/libbuildpack/buildplan"
+	buildPkg "github.com/cloudfoundry/libcfbuildpack/build"
+	jdkPkg "github.com/cloudfoundry/openjdk-buildpack/jdk"
+	jrePkg "github.com/cloudfoundry/openjdk-buildpack/jre"
 )
 
 func main() {
-	build, err := libjavabuildpack.DefaultBuild()
+	build, err := buildPkg.DefaultBuild()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to initialize Build: %s\n", err.Error())
+		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Build: %s\n", err.Error())
 		os.Exit(101)
-		return
 	}
 
+	if code, err := b(build); err != nil {
+		build.Logger.Info(err.Error())
+		os.Exit(code)
+	} else {
+		os.Exit(code)
+	}
+}
+
+func b(build buildPkg.Build) (int, error) {
 	build.Logger.FirstLine(build.Logger.PrettyVersion(build.Buildpack))
 
-	if jdk, ok, err := openjdk_buildpack.NewJDK(build) ; err != nil {
-		build.Logger.Info(err.Error())
-		build.Failure(102)
-		return
+	if jdk, ok, err := jdkPkg.NewJDK(build); err != nil {
+		return build.Failure(102), err
 	} else if ok {
-		if err := jdk.Contribute() ; err != nil {
-			build.Logger.Info(err.Error())
-			build.Failure(103)
-			return
+		if err := jdk.Contribute(); err != nil {
+			return build.Failure(103), err
 		}
 	}
 
-	if jre, ok, err := openjdk_buildpack.NewJRE(build) ; err != nil {
-		build.Logger.Info(err.Error())
-		build.Failure(102)
-		return
+	if jre, ok, err := jrePkg.NewJRE(build); err != nil {
+		return build.Failure(102), err
 	} else if ok {
-		if err := jre.Contribute() ; err != nil {
-			build.Logger.Info(err.Error())
-			build.Failure(103)
-			return
+		if err := jre.Contribute(); err != nil {
+			return build.Failure(103), err
 		}
 	}
 
-	build.Success()
-	return
+	return build.Success(buildplan.BuildPlan{})
 }

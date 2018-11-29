@@ -20,18 +20,25 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/buildpack/libbuildpack"
-	"github.com/cloudfoundry/libjavabuildpack"
+	"github.com/buildpack/libbuildpack/buildplan"
+	detectPkg "github.com/cloudfoundry/libcfbuildpack/detect"
 )
 
 func main() {
-	detect, err := libjavabuildpack.DefaultDetect()
+	detect, err := detectPkg.DefaultDetect()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err.Error())
+		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err.Error())
 		os.Exit(101)
-		return
 	}
 
-	detect.Pass(libbuildpack.BuildPlan{})
-	return
+	if code, err := d(detect); err != nil {
+		detect.Logger.Info(err.Error())
+		os.Exit(code)
+	} else {
+		os.Exit(code)
+	}
+}
+
+func d(detect detectPkg.Detect) (int, error) {
+	return detect.Pass(buildplan.BuildPlan{})
 }

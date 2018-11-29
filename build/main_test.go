@@ -19,7 +19,7 @@ package main
 import (
 	"testing"
 
-	"github.com/cloudfoundry/libjavabuildpack/test"
+	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -31,15 +31,15 @@ func TestBuild(t *testing.T) {
 func testBuild(t *testing.T, when spec.G, it spec.S) {
 
 	it("always passes", func() {
-		f := test.NewEnvironmentFactory(t)
-		defer f.Restore()
+		f := test.NewBuildFactory(t)
 
-		f.Console.In(t, "")
+		exitStatus, err := b(f.Build)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-		main()
-
-		if *f.ExitStatus != 0 {
-			t.Errorf("os.Exit = %d, expected 0", *f.ExitStatus)
+		if exitStatus != 0 {
+			t.Errorf("os.Exit = %d, expected 0", exitStatus)
 		}
 	})
 }

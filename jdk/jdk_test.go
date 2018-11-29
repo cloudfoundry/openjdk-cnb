@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package openjdk_buildpack_test
+package jdk_test
 
 import (
 	"path/filepath"
 	"testing"
 
-	"github.com/buildpack/libbuildpack"
-	"github.com/cloudfoundry/libjavabuildpack/test"
-	"github.com/cloudfoundry/openjdk-buildpack"
+	"github.com/buildpack/libbuildpack/buildplan"
+	"github.com/cloudfoundry/libcfbuildpack/test"
+	"github.com/cloudfoundry/openjdk-buildpack/jdk"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -35,10 +35,10 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 
 	it("returns true if build plan exists", func() {
 		f := test.NewBuildFactory(t)
-		f.AddDependency(t, openjdk_buildpack.JDKDependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency, libbuildpack.BuildPlanDependency{})
+		f.AddDependency(t, jdk.Dependency, "stub-openjdk-jdk.tar.gz")
+		f.AddBuildPlan(t, jdk.Dependency, buildplan.Dependency{})
 
-		_, ok, err := openjdk_buildpack.NewJDK(f.Build)
+		_, ok, err := jdk.NewJDK(f.Build)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -50,7 +50,7 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 	it("returns false if build plan does not exist", func() {
 		f := test.NewBuildFactory(t)
 
-		_, ok, err := openjdk_buildpack.NewJDK(f.Build)
+		_, ok, err := jdk.NewJDK(f.Build)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -61,10 +61,10 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 
 	it("contributes JDK", func() {
 		f := test.NewBuildFactory(t)
-		f.AddDependency(t, openjdk_buildpack.JDKDependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, openjdk_buildpack.JDKDependency, libbuildpack.BuildPlanDependency{})
+		f.AddDependency(t, jdk.Dependency, "stub-openjdk-jdk.tar.gz")
+		f.AddBuildPlan(t, jdk.Dependency, buildplan.Dependency{})
 
-		j, _, err := openjdk_buildpack.NewJDK(f.Build)
+		j, _, err := jdk.NewJDK(f.Build)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -73,9 +73,10 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 			t.Fatal(err)
 		}
 
-		layerRoot := filepath.Join(f.Build.Cache.Root, "openjdk-jdk")
-		test.BeFileLike(t, filepath.Join(layerRoot, "fixture-marker"), 0644, "")
-		test.BeFileLike(t, filepath.Join(layerRoot, "env", "JAVA_HOME.override"), 0644, layerRoot)
-		test.BeFileLike(t, filepath.Join(layerRoot, "env", "JDK_HOME.override"), 0644, layerRoot)
+		layer := f.Build.Layers.Layer("openjdk-jdk")
+		test.BeLayerLike(t, layer, true, true, false)
+		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
+		test.BeFileLike(t, filepath.Join(layer.Root, "env.build", "JAVA_HOME.override"), 0644, layer.Root)
+		test.BeFileLike(t, filepath.Join(layer.Root, "env.build", "JDK_HOME.override"), 0644, layer.Root)
 	})
 }
