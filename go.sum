@@ -4,8 +4,8 @@ github.com/Masterminds/semver v1.4.2 h1:WBLTQ37jOCzSLtXNdoo8bNM8876KhNqOKvrlGITg
 github.com/Masterminds/semver v1.4.2/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF078ddwwvV3Y=
 github.com/buildpack/libbuildpack v1.3.1-0.20181129180757-ae7cfb620581 h1:YuKIafgYYeQjXSysXgx05ahXeooilpBnqqthDFrD8bY=
 github.com/buildpack/libbuildpack v1.3.1-0.20181129180757-ae7cfb620581/go.mod h1:H7wn9AUhH7wcIWQcS+M/lyiDd3cz1dsp/u9KUPjztmo=
-github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129192222-87669b94584f h1:w87ZYXRncbl16qnWEk0Ha2qAt3L5M+ZE+qCHp9JtRIs=
-github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129192222-87669b94584f/go.mod h1:avj1/kzWKimHkjjdJK/d8ZrplYfzj41rZdG0Er3b/rQ=
+github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129192823-ead1859f56c0 h1:dvwsjEQpPC/skZTYXcD+TaidS3dHsT1T49ejcMinlKk=
+github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129192823-ead1859f56c0/go.mod h1:avj1/kzWKimHkjjdJK/d8ZrplYfzj41rZdG0Er3b/rQ=
 github.com/fatih/color v1.7.0 h1:DkWD4oS2D8LGGgTQ6IvwJJXSL5Vp2ffcQg58nFV38Ys=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/h2non/gock v1.0.12 h1:e1lLoiLdVdzJoqqCRtm1tbqCEDWG9Xei/1mzmav+GAs=
