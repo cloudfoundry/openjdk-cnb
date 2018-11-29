@@ -19,6 +19,7 @@ package main
 import (
 	"testing"
 
+	"github.com/cloudfoundry/libcfbuildpack/detect"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
@@ -38,7 +39,7 @@ func testDetect(t *testing.T, when spec.G, it spec.S) {
 			t.Fatal(err)
 		}
 
-		if exitStatus != 0 {
+		if exitStatus != detect.PassStatusCode {
 			t.Errorf("os.Exit = %d, expected 0", exitStatus)
 		}
 	})
