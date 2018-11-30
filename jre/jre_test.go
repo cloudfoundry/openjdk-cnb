@@ -78,7 +78,7 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		layer := f.Build.Layers.Layer("openjdk-jre")
 		test.BeLayerLike(t, layer, true, true, false)
 		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
-		test.BeFileLike(t, filepath.Join(layer.Root, "env", "JAVA_HOME.override"), 0644, layer.Root)
+		test.BeOverrideSharedEnvLike(t, layer, "JAVA_HOME", layer.Root)
 	})
 
 	it("contributes JRE to launch", func() {
@@ -100,6 +100,6 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		layer := f.Build.Layers.Layer("openjdk-jre")
 		test.BeLayerLike(t, layer, false, true, true)
 		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
-		test.BeFileLike(t, filepath.Join(layer.Root, "env", "JAVA_HOME.override"), 0644, layer.Root)
+		test.BeOverrideSharedEnvLike(t, layer, "JAVA_HOME", layer.Root)
 	})
 }

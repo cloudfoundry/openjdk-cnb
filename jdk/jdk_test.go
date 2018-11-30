@@ -76,7 +76,7 @@ func testJDK(t *testing.T, when spec.G, it spec.S) {
 		layer := f.Build.Layers.Layer("openjdk-jdk")
 		test.BeLayerLike(t, layer, true, true, false)
 		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
-		test.BeFileLike(t, filepath.Join(layer.Root, "env.build", "JAVA_HOME.override"), 0644, layer.Root)
-		test.BeFileLike(t, filepath.Join(layer.Root, "env.build", "JDK_HOME.override"), 0644, layer.Root)
+		test.BeOverrideBuildEnvLike(t, layer, "JAVA_HOME", layer.Root)
+		test.BeOverrideBuildEnvLike(t, layer, "JDK_HOME", layer.Root)
 	})
 }
