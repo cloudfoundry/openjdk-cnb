@@ -27,12 +27,12 @@ import (
 func main() {
 	detect, err := detectPkg.DefaultDetect()
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err.Error())
+		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err)
 		os.Exit(101)
 	}
 
 	if code, err := d(detect); err != nil {
-		detect.Logger.Info(err.Error())
+		detect.Logger.Info(err)
 		os.Exit(code)
 	} else {
 		os.Exit(code)

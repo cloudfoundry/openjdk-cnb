@@ -26,12 +26,12 @@ import (
 func main() {
 	packager, err := packagerPkg.DefaultPackager()
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Packager: %s\n", err.Error())
+		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Packager: %s\n", err)
 		os.Exit(101)
 	}
 
 	if code, err := p(packager); err != nil {
-		packager.Logger.Info(err.Error())
+		packager.Logger.Info(err)
 		os.Exit(code)
 	} else {
 		os.Exit(code)
