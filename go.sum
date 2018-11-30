@@ -2,10 +2,10 @@ github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Masterminds/semver v1.4.2 h1:WBLTQ37jOCzSLtXNdoo8bNM8876KhNqOKvrlGITgsTc=
 github.com/Masterminds/semver v1.4.2/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF078ddwwvV3Y=
-github.com/buildpack/libbuildpack v1.3.1-0.20181129205837-00a6706c5d55 h1:p+/QftSAHGWPaqRM2+E9zH07dQDswacxB6smjVRi3Cs=
-github.com/buildpack/libbuildpack v1.3.1-0.20181129205837-00a6706c5d55/go.mod h1:H7wn9AUhH7wcIWQcS+M/lyiDd3cz1dsp/u9KUPjztmo=
-github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129211127-f36e1fcc5ab7 h1:8aHQiK/5sGL8CaSPc1i7vOauyddjeSDHW1U/yghUvbQ=
-github.com/cloudfoundry/libcfbuildpack v1.13.1-0.20181129211127-f36e1fcc5ab7/go.mod h1:c9ZNcivT5FEx/QcEXdnsfqR0JO62KD4YMspOTYp2DSg=
+github.com/buildpack/libbuildpack v1.4.0 h1:1KN0M9G3Fd8qwEdpc13CXf9HKiPz93t2OLwGHhm/gSg=
+github.com/buildpack/libbuildpack v1.4.0/go.mod h1:H7wn9AUhH7wcIWQcS+M/lyiDd3cz1dsp/u9KUPjztmo=
+github.com/cloudfoundry/libcfbuildpack v1.14.0 h1:ZsAM8LSRQc4+7S21hXrsFEgEAEbRB7u/yWS7g/B4vZc=
+github.com/cloudfoundry/libcfbuildpack v1.14.0/go.mod h1:6+ZQATGWoargNqM1paPX9BTtqjK6S6davk6kGpIF1Zo=
 github.com/fatih/color v1.7.0 h1:DkWD4oS2D8LGGgTQ6IvwJJXSL5Vp2ffcQg58nFV38Ys=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/h2non/gock v1.0.12 h1:e1lLoiLdVdzJoqqCRtm1tbqCEDWG9Xei/1mzmav+GAs=
