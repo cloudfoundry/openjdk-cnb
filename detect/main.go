@@ -32,7 +32,7 @@ func main() {
 	}
 
 	if code, err := d(detect); err != nil {
-		detect.Logger.Info(err)
+		detect.Logger.Info(err.Error())
 		os.Exit(code)
 	} else {
 		os.Exit(code)

@@ -31,7 +31,7 @@ func main() {
 	}
 
 	if code, err := p(packager); err != nil {
-		packager.Logger.Info(err)
+		packager.Logger.Info(err.Error())
 		os.Exit(code)
 	} else {
 		os.Exit(code)

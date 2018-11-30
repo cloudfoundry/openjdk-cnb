@@ -34,7 +34,7 @@ func main() {
 	}
 
 	if code, err := b(build); err != nil {
-		build.Logger.Info(err)
+		build.Logger.Info(err.Error())
 		os.Exit(code)
 	} else {
 		os.Exit(code)
