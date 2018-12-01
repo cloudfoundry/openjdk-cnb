@@ -14,5 +14,5 @@
 
 .idea/
 bin/
-cache/
+dependency-cache/
 scratch/
