@@ -10,17 +10,19 @@ The detection phase always passes and contributes nothing to the build plan, dep
 If the build plan contains
 
 * `openjdk-jdk`
-  * Contributes a JDK to a cache layer with all commands on `$PATH`
-  * Contributes `$JAVA_HOME` configured to the cache layer
-  * Contributes `$JDK_HOME` configure to the cache layer
+  * Contributes a JDK to a layer with all commands on `$PATH`
+  * Marks layer as `build` and `cache`
+  * Contributes `$JAVA_HOME` configured to the build layer
+  * Contributes `$JDK_HOME` configure to the build layer
 
 * `openjdk-jre`
-  * `metadata.build = true`
-    * Contributes a JRE to a cache layer with all comands on `$PATH`
-    * Contributes `$JAVA_HOME` configured to the cache layer
-  * `metadata.launch = true`
-    * Contributes a JRE to a launch layer will all commands on `$PATH`
-    * Contributes `$JAVA_HOME` configured to the launch layer
+  * Contributes a JRE to a layer with all commands on `$PATH`
+  * Marks layer as `cache`
+  * Contributes `$JAVA_HOME` configured to the layer
+  * If `metadata.build = true`
+    * Marks layer as `build`
+  * If `metadata.launch = true`
+    * Marks layer as `launch`
 
 ## License
 This buildpack is released under version 2.0 of the [Apache License][a].
