@@ -20,4 +20,4 @@ VERSION=$(sed -n 's|version = \"\(.*\)\"|\1|p' buildpack.toml | head -n1)
 
 cd ${PACKAGE_DIR}
 mkdir -p ${TARGET_DIR}
-tar czf "${TARGET_DIR}/${ID}-${VERSION}.tgz" *
+tar czf "${TARGET_DIR}/$(echo ${ID} | sed 's|\.|/|g')/${ID}/${VERSION}/${ID}-$(echo ${VERSION} | sed "s|SNAPSHOT|$(date '+%Y%m%d.%H%M%S')-1|").tgz" *
