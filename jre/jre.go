@@ -50,7 +50,11 @@ func (j JRE) Contribute() error {
 			return err
 		}
 
-		return layer.OverrideSharedEnv("JAVA_HOME", layer.Root)
+		if err := layer.OverrideSharedEnv("JAVA_HOME", layer.Root); err != nil {
+			return err
+		}
+
+		return nil
 	}, j.flags()...)
 }
 

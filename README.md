@@ -10,14 +10,12 @@ The detection phase always passes and contributes nothing to the build plan, dep
 If the build plan contains
 
 * `openjdk-jdk`
-  * Contributes a JDK to a layer with all commands on `$PATH`
-  * Marks layer as `build` and `cache`
+  * Contributes a JDK to a layer marked `build` and `cache` with all commands on `$PATH`
   * Contributes `$JAVA_HOME` configured to the build layer
   * Contributes `$JDK_HOME` configure to the build layer
 
 * `openjdk-jre`
-  * Contributes a JRE to a layer with all commands on `$PATH`
-  * Marks layer as `cache`
+  * Contributes a JRE to a layer marked `cache` with all commands on `$PATH`
   * Contributes `$JAVA_HOME` configured to the layer
   * If `metadata.build = true`
     * Marks layer as `build`
