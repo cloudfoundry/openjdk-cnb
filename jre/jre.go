@@ -65,10 +65,10 @@ func (j JRE) String() string {
 }
 
 func (j JRE) flags() []layers.Flag {
-	flags := []layers.Flag{layers.Cache}
+	var flags []layers.Flag
 
 	if j.buildContribution {
-		flags = append(flags, layers.Build)
+		flags = append(flags, layers.Build, layers.Cache)
 	}
 
 	if j.launchContribution {

@@ -49,7 +49,7 @@ func (j JDK) Contribute() error {
 		}
 
 		return nil
-	}, layers.Build, layers.Cache);
+	}, layers.Build, layers.Cache)
 }
 
 // String makes JDK satisfy the Stringer interface.

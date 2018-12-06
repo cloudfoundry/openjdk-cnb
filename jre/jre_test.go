@@ -98,7 +98,7 @@ func testJRE(t *testing.T, when spec.G, it spec.S) {
 		}
 
 		layer := f.Build.Layers.Layer("openjdk-jre")
-		test.BeLayerLike(t, layer, false, true, true)
+		test.BeLayerLike(t, layer, false, false, true)
 		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
 		test.BeOverrideSharedEnvLike(t, layer, "JAVA_HOME", layer.Root)
 	})
