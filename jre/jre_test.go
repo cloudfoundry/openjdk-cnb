@@ -73,7 +73,7 @@ func TestJRE(t *testing.T) {
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
 		})
 
-		it.Focus("contributes JRE to launch", func() {
+		it("contributes JRE to launch", func() {
 			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
 			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{
 				Metadata: buildplan.Metadata{jre.LaunchContribution: true},
