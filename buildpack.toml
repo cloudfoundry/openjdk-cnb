@@ -15,7 +15,7 @@
 [buildpack]
 id = "org.cloudfoundry.openjdk"
 name = "Cloud Foundry OpenJDK Buildpack"
-version = "1.0.0-BUILD-SNAPSHOT"
+version = "1.0.0-M3"
 
 [[stacks]]
 id = "io.buildpacks.stacks.bionic"
