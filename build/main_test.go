@@ -21,26 +21,20 @@ import (
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/test"
+	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
 
 func TestBuild(t *testing.T) {
-	spec.Run(t, "Build", testBuild, spec.Report(report.Terminal{}))
-}
+	spec.Run(t, "Build", func(t *testing.T, _ spec.G, it spec.S) {
 
-func testBuild(t *testing.T, when spec.G, it spec.S) {
+		g := NewGomegaWithT(t)
 
-	it("always passes", func() {
-		f := test.NewBuildFactory(t)
+		it("always passes", func() {
+			f := test.NewBuildFactory(t)
 
-		exitStatus, err := b(f.Build)
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		if exitStatus != build.SuccessStatusCode {
-			t.Errorf("os.Exit = %d, expected 0", exitStatus)
-		}
-	})
+			g.Expect(b(f.Build)).To(Equal(build.SuccessStatusCode))
+		})
+	}, spec.Report(report.Terminal{}))
 }
