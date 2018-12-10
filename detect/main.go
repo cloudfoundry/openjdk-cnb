@@ -21,11 +21,11 @@ import (
 	"os"
 
 	"github.com/buildpack/libbuildpack/buildplan"
-	detectPkg "github.com/cloudfoundry/libcfbuildpack/detect"
+	"github.com/cloudfoundry/libcfbuildpack/detect"
 )
 
 func main() {
-	detect, err := detectPkg.DefaultDetect()
+	detect, err := detect.DefaultDetect()
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "Failed to initialize Detect: %s\n", err)
 		os.Exit(101)
@@ -39,6 +39,6 @@ func main() {
 	}
 }
 
-func d(detect detectPkg.Detect) (int, error) {
+func d(detect detect.Detect) (int, error) {
 	return detect.Pass(buildplan.BuildPlan{})
 }
