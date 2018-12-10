@@ -23,60 +23,51 @@ import (
 	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/cloudfoundry/openjdk-buildpack/jdk"
+	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
 
 func TestJDK(t *testing.T) {
-	spec.Run(t, "JDK", testJDK, spec.Report(report.Terminal{}))
-}
+	spec.Run(t, "JDK", func(t *testing.T, _ spec.G, it spec.S) {
 
-func testJDK(t *testing.T, when spec.G, it spec.S) {
+		g := NewGomegaWithT(t)
 
-	it("returns true if build plan exists", func() {
-		f := test.NewBuildFactory(t)
-		f.AddDependency(t, jdk.Dependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, jdk.Dependency, buildplan.Dependency{})
+		var f *test.BuildFactory
 
-		_, ok, err := jdk.NewJDK(f.Build)
-		if err != nil {
-			t.Fatal(err)
-		}
-		if !ok {
-			t.Errorf("NewJDK = %t, expected true", ok)
-		}
-	})
+		it.Before(func() {
+			f = test.NewBuildFactory(t)
+		})
 
-	it("returns false if build plan does not exist", func() {
-		f := test.NewBuildFactory(t)
+		it("returns true if build plan exists", func() {
+			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
+			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{})
 
-		_, ok, err := jdk.NewJDK(f.Build)
-		if err != nil {
-			t.Fatal(err)
-		}
-		if ok {
-			t.Errorf("NewJDK = %t, expected false", ok)
-		}
-	})
+			_, ok, err := jdk.NewJDK(f.Build)
+			g.Expect(ok).To(BeTrue())
+			g.Expect(err).NotTo(HaveOccurred())
+		})
 
-	it("contributes JDK", func() {
-		f := test.NewBuildFactory(t)
-		f.AddDependency(t, jdk.Dependency, "stub-openjdk-jdk.tar.gz")
-		f.AddBuildPlan(t, jdk.Dependency, buildplan.Dependency{})
+		it("returns false if build plan does not exist", func() {
+			_, ok, err := jdk.NewJDK(f.Build)
+			g.Expect(ok).To(BeFalse())
+			g.Expect(err).NotTo(HaveOccurred())
+		})
 
-		j, _, err := jdk.NewJDK(f.Build)
-		if err != nil {
-			t.Fatal(err)
-		}
+		it("contributes JDK", func() {
+			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
+			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{})
 
-		if err := j.Contribute(); err != nil {
-			t.Fatal(err)
-		}
+			j, _, err := jdk.NewJDK(f.Build)
+			g.Expect(err).NotTo(HaveOccurred())
 
-		layer := f.Build.Layers.Layer("openjdk-jdk")
-		test.BeLayerLike(t, layer, true, true, false)
-		test.BeFileLike(t, filepath.Join(layer.Root, "fixture-marker"), 0644, "")
-		test.BeOverrideBuildEnvLike(t, layer, "JAVA_HOME", layer.Root)
-		test.BeOverrideBuildEnvLike(t, layer, "JDK_HOME", layer.Root)
-	})
+			g.Expect(j.Contribute()).To(Succeed())
+
+			layer := f.Build.Layers.Layer("openjdk-jdk")
+			g.Expect(layer).To(test.HaveLayerMetadata(true, true, false))
+			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(BeARegularFile())
+			g.Expect(layer).To(test.HaveOverrideBuildEnvironment("JAVA_HOME", layer.Root))
+			g.Expect(layer).To(test.HaveOverrideBuildEnvironment("JDK_HOME", layer.Root))
+		})
+	}, spec.Report(report.Terminal{}))
 }
