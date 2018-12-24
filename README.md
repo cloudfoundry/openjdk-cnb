@@ -15,10 +15,10 @@ If the build plan contains
   * Contributes `$JDK_HOME` configure to the build layer
 
 * `openjdk-jre`
-  * Contributes a JRE to a layer marked `cache` with all commands on `$PATH`
+  * Contributes a JRE to a layer with all commands on `$PATH`
   * Contributes `$JAVA_HOME` configured to the layer
   * If `metadata.build = true`
-    * Marks layer as `build`
+    * Marks layer as `build` and `cache`
   * If `metadata.launch = true`
     * Marks layer as `launch`
 
