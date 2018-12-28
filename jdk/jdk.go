@@ -18,6 +18,7 @@ package jdk
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
@@ -70,7 +71,12 @@ func NewJDK(build build.Build) (JDK, bool, error) {
 		return JDK{}, false, err
 	}
 
-	dep, err := deps.Best(Dependency, bp.Version, build.Stack)
+	version, ok := os.LookupEnv("BP_JAVA_VERSION")
+	if !ok {
+		version = bp.Version
+	}
+
+	dep, err := deps.Best(Dependency, version, build.Stack)
 	if err != nil {
 		return JDK{}, false, err
 	}
