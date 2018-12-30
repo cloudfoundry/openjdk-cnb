@@ -89,16 +89,5 @@ func TestJRE(t *testing.T) {
 			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
 		})
-
-		it("uses $BP_JAVA_VERSION if set", func() {
-			f.AddDependencyWithVersion(jre.Dependency, "2.0", filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
-			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{
-				Version: "1.*",
-			})
-			defer test.ReplaceEnv(t, "BP_JAVA_VERSION", "2.*")()
-
-			_, _, err := jre.NewJRE(f.Build)
-			g.Expect(err).NotTo(HaveOccurred())
-		})
 	}, spec.Report(report.Terminal{}))
 }
