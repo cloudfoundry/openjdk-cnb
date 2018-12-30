@@ -90,7 +90,7 @@ func TestJRE(t *testing.T) {
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
 		})
 
-		it("uses $BP_JAVA_VERSION is set", func() {
+		it("uses $BP_JAVA_VERSION if set", func() {
 			f.AddDependencyWithVersion(jre.Dependency, "2.0", filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
 			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{
 				Version: "1.*",

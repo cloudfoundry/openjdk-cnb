@@ -70,7 +70,7 @@ func TestJDK(t *testing.T) {
 			g.Expect(layer).To(test.HaveOverrideBuildEnvironment("JDK_HOME", layer.Root))
 		})
 
-		it("uses $BP_JAVA_VERSION is set", func() {
+		it("uses $BP_JAVA_VERSION if set", func() {
 			f.AddDependencyWithVersion(jdk.Dependency, "2.0", filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
 			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{
 				Version: "1.*",
