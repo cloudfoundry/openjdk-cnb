@@ -78,3 +78,4 @@ stacks  = [ "io.buildpacks.stacks.bionic" ]
     "bin/detect",
     "buildpack.toml",
   ]
+  default_version = "11.*"

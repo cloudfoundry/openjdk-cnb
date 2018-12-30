@@ -69,16 +69,5 @@ func TestJDK(t *testing.T) {
 			g.Expect(layer).To(test.HaveOverrideBuildEnvironment("JAVA_HOME", layer.Root))
 			g.Expect(layer).To(test.HaveOverrideBuildEnvironment("JDK_HOME", layer.Root))
 		})
-
-		it("uses $BP_JAVA_VERSION if set", func() {
-			f.AddDependencyWithVersion(jdk.Dependency, "2.0", filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
-			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{
-				Version: "1.*",
-			})
-			defer test.ReplaceEnv(t, "BP_JAVA_VERSION", "2.*")()
-
-			_, _, err := jdk.NewJDK(f.Build)
-			g.Expect(err).NotTo(HaveOccurred())
-		})
 	}, spec.Report(report.Terminal{}))
 }

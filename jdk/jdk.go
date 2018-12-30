@@ -18,11 +18,11 @@ package jdk
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
+	"github.com/cloudfoundry/openjdk-buildpack/internal"
 )
 
 // Dependency is a build plan dependency indicating a requirement for a JDK.
@@ -71,10 +71,7 @@ func NewJDK(build build.Build) (JDK, bool, error) {
 		return JDK{}, false, err
 	}
 
-	version, ok := os.LookupEnv("BP_JAVA_VERSION")
-	if !ok {
-		version = bp.Version
-	}
+	version := internal.Version(build.Buildpack, bp)
 
 	dep, err := deps.Best(Dependency, version, build.Stack)
 	if err != nil {

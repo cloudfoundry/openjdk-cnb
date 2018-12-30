@@ -18,11 +18,11 @@ package jre
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
+	"github.com/cloudfoundry/openjdk-buildpack/internal"
 )
 
 const (
@@ -92,10 +92,7 @@ func NewJRE(build build.Build) (JRE, bool, error) {
 		return JRE{}, false, err
 	}
 
-	version, ok := os.LookupEnv("BP_JAVA_VERSION")
-	if !ok {
-		version = bp.Version
-	}
+	version := internal.Version(build.Buildpack, bp)
 
 	dep, err := deps.Best(Dependency, version, build.Stack)
 	if err != nil {
