@@ -36,8 +36,8 @@ stacks  = [ "io.buildpacks.stacks.bionic" ]
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
 version = "11.0.2"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-11.0.2_07.tar.gz"
-sha256  = "dd96b2f066900060d0fc923d2313c9d3d63a49b0e56897c26ee91fc18efe2777"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
+sha256  = "043ec39d0b7dfbf468a3981f85f401414bc34c59eadfa33c927e4b40e6df6820"
 stacks  = [ "io.buildpacks.stacks.bionic" ]
 
   [[metadata.dependencies.licenses]]
@@ -60,8 +60,8 @@ stacks  = [ "io.buildpacks.stacks.bionic" ]
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
 version = "11.0.2"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-11.0.1_13.tar.gz"
-sha256  = "10f3dd35b4f5f4513cfadc41fdcb0323d1409e1fd39456cbf12610594a604d80"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
+sha256  = "a8b75a7919ce0933230da1ec8bd4bc320acd3b343a72b592bf1b85646a9367b1"
 stacks  = [ "io.buildpacks.stacks.bionic" ]
 
   [[metadata.dependencies.licenses]]
