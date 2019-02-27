@@ -7,5 +7,5 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
   ln -s $PWD/go-module-cache ${GOPATH}/pkg/mod
 fi
 
-go build -ldflags='-s -w' -o bin/build build/main.go
-go build -ldflags='-s -w' -o bin/detect detect/main.go
+GOOS="linux" go build -ldflags='-s -w' -o bin/build build/main.go
+GOOS="linux" go build -ldflags='-s -w' -o bin/detect detect/main.go
