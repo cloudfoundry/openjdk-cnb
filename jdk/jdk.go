@@ -71,7 +71,10 @@ func NewJDK(build build.Build) (JDK, bool, error) {
 		return JDK{}, false, err
 	}
 
-	version := internal.Version(build.Buildpack, bp)
+	version, err := internal.Version(Dependency, bp, build.Buildpack)
+	if err != nil {
+		return JDK{}, false, err
+	}
 
 	dep, err := deps.Best(Dependency, version, build.Stack)
 	if err != nil {

@@ -20,6 +20,10 @@ version = "1.0.0-BUILD-SNAPSHOT"
 [[stacks]]
 id = "io.buildpacks.stacks.bionic"
 
+[metadata.default_versions]
+openjdk-jdk = "11.*"
+openjdk-jre = "11.*"
+
 [[metadata.dependencies]]
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
@@ -69,13 +73,12 @@ stacks  = [ "io.buildpacks.stacks.bionic" ]
   uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
 
 [metadata]
-  pre_package = "ci/build.sh"
-  include_files = [
-    "LICENSE",
-    "NOTICE",
-    "README.md",
-    "bin/build",
-    "bin/detect",
-    "buildpack.toml",
-  ]
-  default_version = "11.*"
+pre_package = "ci/build.sh"
+include_files = [
+  "LICENSE",
+  "NOTICE",
+  "README.md",
+  "bin/build",
+  "bin/detect",
+  "buildpack.toml",
+]

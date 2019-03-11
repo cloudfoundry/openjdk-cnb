@@ -27,20 +27,15 @@ import (
 //
 // 1. $BP_JAVA_VERSION
 // 2. Build Plan Version
-// 3. Buildpack Metadata "default_version"
-// 4. Empty string
-func Version(buildpack buildpack.Buildpack, dependency buildplan.Dependency) string {
+// 3. Buildpack Metadata "default_versions"
+func Version(id string, dependency buildplan.Dependency, buildpack buildpack.Buildpack) (string, error) {
 	if version, ok := os.LookupEnv("BP_JAVA_VERSION"); ok {
-		return version
+		return version, nil
 	}
 
 	if dependency.Version != "" {
-		return dependency.Version
+		return dependency.Version, nil
 	}
 
-	if version, ok := buildpack.Metadata["default_version"].(string); ok {
-		return version
-	}
-
-	return ""
+	return buildpack.DefaultVersion(id)
 }
