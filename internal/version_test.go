@@ -39,28 +39,29 @@ func TestVersion(t *testing.T) {
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
-			g.Expect(internal.Version(buildpack, dependency)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
 		})
 
 		it("uses build plan version if set", func() {
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{}, logger.Logger{})
 			dependency := buildplan.Dependency{Version: "test-version"}
 
-			g.Expect(internal.Version(buildpack, dependency)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
 		})
 
 		it("uses buildpack default version if set", func() {
-			buildpack := buildpack.NewBuildpack(bp.Buildpack{Metadata: buildpack.Metadata{"default_version": "test-version"}}, logger.Logger{})
+			buildpack := buildpack.NewBuildpack(bp.Buildpack{Metadata: buildpack.Metadata{"default_versions": map[string]interface{}{"test-id": "test-version"}}}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
-			g.Expect(internal.Version(buildpack, dependency)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
 		})
 
-		it("return empty string if none set", func() {
-			buildpack := buildpack.NewBuildpack(bp.Buildpack{}, logger.Logger{})
+		it("return errorif none set", func() {
+			buildpack := buildpack.NewBuildpack(bp.Buildpack{Metadata: buildpack.Metadata{"default_versions": map[string]interface{}{"test-id-2": "test-version"}}}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
-			g.Expect(internal.Version(buildpack, dependency)).To(Equal(""))
+			_, err := internal.Version("test-id", dependency, buildpack)
+			g.Expect(err).To(MatchError("test-id does not map to a string in default_versions map"))
 		})
 	})
 }
