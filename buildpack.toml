@@ -17,8 +17,10 @@ id = "org.cloudfoundry.openjdk"
 name = "Cloud Foundry OpenJDK Buildpack"
 version = "1.0.0-BUILD-SNAPSHOT"
 
-[[stacks]]
-id = "io.buildpacks.stacks.bionic"
+stacks = [
+  { id = "io.buildpacks.stacks.bionic" },
+  { id = "org.cloudfoundry.stacks.cflinuxfs3" },
+]
 
 [metadata.default_versions]
 openjdk-jdk = "11.*"
@@ -30,7 +32,7 @@ name    = "OpenJDK JRE"
 version = "1.8.202"
 uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-1.8.0_202.tar.gz"
 sha256  = "56e49e67062f541e0c60abd5e0b79d74557aca49f1f129393d96b774ed2b6622"
-stacks  = [ "io.buildpacks.stacks.bionic" ]
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
@@ -42,7 +44,7 @@ name    = "OpenJDK JRE"
 version = "11.0.2"
 uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
 sha256  = "043ec39d0b7dfbf468a3981f85f401414bc34c59eadfa33c927e4b40e6df6820"
-stacks  = [ "io.buildpacks.stacks.bionic" ]
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
@@ -54,7 +56,7 @@ name    = "OpenJDK JDK"
 version = "1.8.202"
 uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-1.8.0_202.tar.gz"
 sha256  = "e2f0274c8789ddfd88248b4d6ed1f3f851d46b73708a3da7b9445d023bab5425"
-stacks  = [ "io.buildpacks.stacks.bionic" ]
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
@@ -66,7 +68,7 @@ name    = "OpenJDK JDK"
 version = "11.0.2"
 uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
 sha256  = "a8b75a7919ce0933230da1ec8bd4bc320acd3b343a72b592bf1b85646a9367b1"
-stacks  = [ "io.buildpacks.stacks.bionic" ]
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
