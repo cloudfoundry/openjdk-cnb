@@ -30,8 +30,8 @@ openjdk-jre = "11.*"
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
 version = "1.8.202"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-1.8.0_202.tar.gz"
-sha256  = "56e49e67062f541e0c60abd5e0b79d74557aca49f1f129393d96b774ed2b6622"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-jre-1.8.0_202-bionic.tar.gz"
+sha256  = "344ec8fa31f9ef8f7ecd2c01fb9ad1ded765c790fe739482cf63963b4451c3c7"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
@@ -42,8 +42,20 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
 version = "11.0.2"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
-sha256  = "043ec39d0b7dfbf468a3981f85f401414bc34c59eadfa33c927e4b40e6df6820"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-jre-11.0.2_09-bionic.tar.gz"
+sha256  = "1b529e21f74cc8a5ce785f5feaf3dc279ff76b4699af0e9202519b2efdb81caa"
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
+
+  [[metadata.dependencies.licenses]]
+  type = "GPL-2.0 WITH Classpath-exception-2.0"
+  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+
+[[metadata.dependencies]]
+id      = "openjdk-jre"
+name    = "OpenJDK JRE"
+version = "12.0.0"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-jre-12.0.0_33-bionic.tar.gz"
+sha256  = "38fe6d0a1848c841a9bfe47181c1bf4d0bd8f6d59759dc59f7de61f9f095276f"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
@@ -54,8 +66,8 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
 version = "1.8.202"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-1.8.0_202.tar.gz"
-sha256  = "e2f0274c8789ddfd88248b4d6ed1f3f851d46b73708a3da7b9445d023bab5425"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-1.8.0_202-bionic.tar.gz"
+sha256  = "e074a10800d0178cc0d0dc88b8720edf84c8aa29a67167aa6df7fa0452c1bf0f"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
@@ -66,8 +78,20 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
 version = "11.0.2"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-11.0.2_09.tar.gz"
-sha256  = "a8b75a7919ce0933230da1ec8bd4bc320acd3b343a72b592bf1b85646a9367b1"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-11.0.2_09-bionic.tar.gz"
+sha256  = "4590fbf9d891140ee977d875b43ccfdf4192283b53e9214699c6177df2c77d25"
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
+
+  [[metadata.dependencies.licenses]]
+  type = "GPL-2.0 WITH Classpath-exception-2.0"
+  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+
+[[metadata.dependencies]]
+id      = "openjdk-jdk"
+name    = "OpenJDK JDK"
+version = "12.0.0"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-12.0.0_33-bionic.tar.gz"
+sha256  = "7e29166f555fda3fc52fadada1aa794fc07699eca4525dbc765a63668a376721"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
