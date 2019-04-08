@@ -38,5 +38,3 @@ bin/dependency openjdk-jdk "11\.0\.[\d]+" $(version ../openjdk-jdk-11/version) $
 
 bin/dependency openjdk-jre "12\.0\.[\d]+" $(version ../openjdk-jre-12/version) $(cat ../openjdk-jre-12/uri) $(cat ../openjdk-jre-12/sha256)
 bin/dependency openjdk-jdk "12\.0\.[\d]+" $(version ../openjdk-jdk-12/version) $(cat ../openjdk-jdk-12/uri) $(cat ../openjdk-jdk-12/sha256)
-
-cat buildpack.toml
