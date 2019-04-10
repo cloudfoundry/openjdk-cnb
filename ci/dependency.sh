@@ -8,7 +8,9 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
 fi
 
 commit() {
-  git diff-index --quiet HEAD || git commit -a -m "Dependency Upgrade: $1 $2"
+  if ! git diff-index --quiet HEAD; then
+    git commit -a -m "Dependency Upgrade: $1 $2"
+  fi
 }
 
 version() {
