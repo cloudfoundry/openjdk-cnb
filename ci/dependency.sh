@@ -8,8 +8,7 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
 fi
 
 commit() {
-  git add buildpack.toml
-  git diff-index --quiet HEAD || git commit -m "Dependency Upgrade: $1 $2"
+  git diff-index --quiet HEAD || git commit -a -m "Dependency Upgrade: $1 $2"
 }
 
 version() {
