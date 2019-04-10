@@ -8,7 +8,7 @@ image_resource:
     tag: latest
 
 inputs:
-- name: openjdk-buildpack
+- name: openjdk-cnb
 - name: openjdk-jre-8
 - name: openjdk-jdk-8
 - name: openjdk-jre-11
@@ -17,13 +17,13 @@ inputs:
 - name: openjdk-jdk-12
 
 outputs:
-- name: openjdk-buildpack
+- name: openjdk-cnb
 
 caches:
 - path: go-module-cache
 
 run:
-  path: openjdk-buildpack/ci/dependency.sh
+  path: openjdk-cnb/ci/dependency.sh
 
 params:
   GIT_USER_EMAIL:

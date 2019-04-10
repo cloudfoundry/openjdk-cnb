@@ -8,10 +8,10 @@ image_resource:
     tag: latest
 
 inputs:
-- name: openjdk-buildpack
+- name: openjdk-cnb
 
 caches:
 - path: go-module-cache
 
 run:
-  path: openjdk-buildpack/ci/unit-test.sh
+  path: openjdk-cnb/ci/unit-test.sh

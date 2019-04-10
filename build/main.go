@@ -22,8 +22,8 @@ import (
 
 	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/build"
-	"github.com/cloudfoundry/openjdk-buildpack/jdk"
-	"github.com/cloudfoundry/openjdk-buildpack/jre"
+	"github.com/cloudfoundry/openjdk-cnb/jdk"
+	"github.com/cloudfoundry/openjdk-cnb/jre"
 )
 
 func main() {

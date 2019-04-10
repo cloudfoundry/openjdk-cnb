@@ -22,7 +22,7 @@ import (
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
-	"github.com/cloudfoundry/openjdk-buildpack/internal"
+	"github.com/cloudfoundry/openjdk-cnb/internal"
 )
 
 const (

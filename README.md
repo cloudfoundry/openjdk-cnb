@@ -1,4 +1,4 @@
-# `openjdk-buildpack`
+# `openjdk-cnb`
 The Cloud Foundry OpenJDK Buildpack is a Cloud Native Buildpack V3 that provides OpenJDK JREs and JDKs to applications.
 
 This buildpack is designed to work in collaboration with other buildpacks which request contributions of JREs and JDKs.

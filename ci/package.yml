@@ -8,7 +8,7 @@ image_resource:
     tag: latest
 
 inputs:
-- name: openjdk-buildpack
+- name: openjdk-cnb
 
 outputs:
 - name: artifactory
@@ -17,4 +17,4 @@ caches:
 - path: go-module-cache
 
 run:
-  path: openjdk-buildpack/ci/package.sh
+  path: openjdk-cnb/ci/package.sh

@@ -22,7 +22,7 @@ import (
 
 	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
-	"github.com/cloudfoundry/openjdk-buildpack/jre"
+	"github.com/cloudfoundry/openjdk-cnb/jre"
 	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"

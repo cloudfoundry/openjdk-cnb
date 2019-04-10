@@ -1,4 +1,4 @@
-module github.com/cloudfoundry/openjdk-buildpack
+module github.com/cloudfoundry/openjdk-cnb
 
 require (
 	github.com/buildpack/libbuildpack v1.13.0

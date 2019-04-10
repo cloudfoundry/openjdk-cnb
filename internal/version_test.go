@@ -24,7 +24,7 @@ import (
 	"github.com/cloudfoundry/libcfbuildpack/buildpack"
 	"github.com/cloudfoundry/libcfbuildpack/logger"
 	"github.com/cloudfoundry/libcfbuildpack/test"
-	"github.com/cloudfoundry/openjdk-buildpack/internal"
+	"github.com/cloudfoundry/openjdk-cnb/internal"
 	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 )
