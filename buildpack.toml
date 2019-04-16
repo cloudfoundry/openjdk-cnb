@@ -29,9 +29,9 @@ openjdk-jre = "11.*"
 [[metadata.dependencies]]
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
-version = "1.8.202"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-jre-1.8.0_202-bionic.tar.gz"
-sha256  = "dc5989e1ac9e2a030ca84a37b12547b4a13ba95d9b974a2eae8574fc08dbf8f0"
+version = "1.8.212"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk/bionic/x86_64/openjdk-jre-1.8.0_212-bionic.tar.gz"
+sha256  = "400d370a3abc0fc6d3860f9f29558d7d0a4c15b34e899b89e11ec1aa97e29fbb"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
