@@ -89,9 +89,9 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 [[metadata.dependencies]]
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
-version = "12.0.0"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-12.0.0_33-bionic.tar.gz"
-sha256  = "5fd60d21ff8bc99b86afdcf4cc74b5fb798ec633aed13e851552e6d9d1220d7f"
+version = "12.0.1"
+uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-12.0.1_12-bionic.tar.gz"
+sha256  = "f9e0c406818c2dfed354645f050307ac6c89e51369382fa072338fefa5e799b3"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
