@@ -67,7 +67,7 @@ id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
 version = "1.8.212"
 uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-1.8.0_212-bionic.tar.gz"
-sha256  = "c1533629ec176228401fb1fe276cae75ef1a809b810715fb6f544f0276116e35"
+sha256  = "df27f53568f76d3d0d1447b8159139ccac3d4f49da6fa48b18bc590c2c8e35d3"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
