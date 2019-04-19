@@ -78,8 +78,8 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
 version = "11.0.3"
-uri     = "https://java-buildpack.cloudfoundry.org/openjdk-jdk/bionic/x86_64/openjdk-jdk-11.0.3_07-bionic.tar.gz"
-sha256  = "fd7b5a17daa3a9702cb88c104e70cdf70be94149b81834453254902f6a236860"
+uri     = "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz"
+sha256  = "23cded2b43261016f0f246c85c8948d4a9b7f2d44988f75dad69723a7a526094"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
