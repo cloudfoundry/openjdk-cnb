@@ -38,7 +38,7 @@ func (j JDK) Contribute() error {
 	return j.layer.Contribute(func(artifact string, layer layers.DependencyLayer) error {
 		layer.Logger.SubsequentLine("Expanding to %s", layer.Root)
 
-		if err := helper.ExtractTarGz(artifact, layer.Root, 0); err != nil {
+		if err := helper.ExtractTarGz(artifact, layer.Root, 1); err != nil {
 			return err
 		}
 
