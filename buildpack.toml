@@ -18,10 +18,10 @@ name = "Cloud Foundry OpenJDK Buildpack"
 version = "1.0.0-BUILD-SNAPSHOT"
 
 [[stacks]]
-id = "org.cloudfoundry.stacks.cflinuxfs3"
+id = "io.buildpacks.stacks.bionic"
 
 [[stacks]]
-id = "io.buildpacks.stacks.bionic"
+id = "org.cloudfoundry.stacks.cflinuxfs3"
 
 [metadata.default_versions]
 openjdk-jdk = "11.*"
