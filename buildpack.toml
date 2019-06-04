@@ -23,7 +23,7 @@ id = "io.buildpacks.stacks.bionic"
 [[stacks]]
 id = "org.cloudfoundry.stacks.cflinuxfs3"
 
-[metadata.default_versions]
+[metadata.default-versions]
 openjdk-jdk = "11.*"
 openjdk-jre = "11.*"
 
