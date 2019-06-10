@@ -17,8 +17,6 @@
 package jre
 
 import (
-	"fmt"
-
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
@@ -58,12 +56,6 @@ func (j JRE) Contribute() error {
 
 		return nil
 	}, j.flags()...)
-}
-
-// String makes JRE satisfy the Stringer interface.
-func (j JRE) String() string {
-	return fmt.Sprintf("JRE{ buildContribution: %t, layer: %s, launchContribution: %t }",
-		j.buildContribution, j.layer, j.launchContribution)
 }
 
 func (j JRE) flags() []layers.Flag {

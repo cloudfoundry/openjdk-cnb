@@ -17,8 +17,6 @@
 package jdk
 
 import (
-	"fmt"
-
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
@@ -52,11 +50,6 @@ func (j JDK) Contribute() error {
 
 		return nil
 	}, layers.Build, layers.Cache)
-}
-
-// String makes JDK satisfy the Stringer interface.
-func (j JDK) String() string {
-	return fmt.Sprintf("JDK{ layer: %s }", j.layer)
 }
 
 // NewJDK creates a new JDK instance. OK is true if build plan contains "openjdk-jdk" dependency, otherwise false.
