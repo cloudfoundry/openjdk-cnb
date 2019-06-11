@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+#      https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,7 +37,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [[metadata.dependencies]]
 id      = "openjdk-jre"
@@ -49,7 +49,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [[metadata.dependencies]]
 id      = "openjdk-jre"
@@ -61,7 +61,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [[metadata.dependencies]]
 id      = "openjdk-jdk"
@@ -73,7 +73,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [[metadata.dependencies]]
 id      = "openjdk-jdk"
@@ -85,7 +85,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [[metadata.dependencies]]
 id      = "openjdk-jdk"
@@ -97,7 +97,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 
   [[metadata.dependencies.licenses]]
   type = "GPL-2.0 WITH Classpath-exception-2.0"
-  uri  = "http://openjdk.java.net/legal/gplv2+ce.html"
+  uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [metadata]
 pre_package = "ci/build.sh"

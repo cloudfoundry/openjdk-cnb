@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -56,7 +56,7 @@ func TestVersion(t *testing.T) {
 			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
 		})
 
-		it("return errorif none set", func() {
+		it("return error if none set", func() {
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{Metadata: buildpack.Metadata{"default-versions": map[string]interface{}{"test-id-2": "test-version"}}}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
