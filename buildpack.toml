@@ -30,9 +30,9 @@ openjdk-jre = "11.*"
 [[metadata.dependencies]]
 id      = "openjdk-jre"
 name    = "OpenJDK JRE"
-version = "8.0.212"
-uri     = "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u212-b04/OpenJDK8U-jre_x64_linux_hotspot_8u212b04.tar.gz"
-sha256  = "96d24d94c022b3e414b612cae8829244329d71ad2cce790f099c020f33247e7e"
+version = "8.0.222"
+uri     = "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u222-b10/OpenJDK8U-jre_x64_linux_hotspot_8u222b10.tar.gz"
+sha256  = "a418ce895c8bf3ca2e7b2f423f038b8b093941684c9430f2e40da0982e12b52d"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
