@@ -23,7 +23,7 @@ import (
 	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
-	. "github.com/onsi/gomega"
+	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -31,7 +31,7 @@ import (
 func TestJRE(t *testing.T) {
 	spec.Run(t, "JRE", func(t *testing.T, _ spec.G, it spec.S) {
 
-		g := NewGomegaWithT(t)
+		g := gomega.NewWithT(t)
 
 		var f *test.BuildFactory
 
@@ -44,16 +44,16 @@ func TestJRE(t *testing.T) {
 			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{})
 
 			_, ok, err := jre.NewJRE(f.Build)
-			g.Expect(ok).To(BeTrue())
-			g.Expect(err).NotTo(HaveOccurred())
+			g.Expect(ok).To(gomega.BeTrue())
+			g.Expect(err).NotTo(gomega.HaveOccurred())
 		})
 
 		it("returns false if build plan does not exist", func() {
 			f := test.NewBuildFactory(t)
 
 			_, ok, err := jre.NewJRE(f.Build)
-			g.Expect(ok).To(BeFalse())
-			g.Expect(err).NotTo(HaveOccurred())
+			g.Expect(ok).To(gomega.BeFalse())
+			g.Expect(err).NotTo(gomega.HaveOccurred())
 		})
 
 		it("contributes JRE to build", func() {
@@ -63,13 +63,13 @@ func TestJRE(t *testing.T) {
 			})
 
 			j, _, err := jre.NewJRE(f.Build)
-			g.Expect(err).NotTo(HaveOccurred())
+			g.Expect(err).NotTo(gomega.HaveOccurred())
 
-			g.Expect(j.Contribute()).To(Succeed())
+			g.Expect(j.Contribute()).To(gomega.Succeed())
 
 			layer := f.Build.Layers.Layer("openjdk-jre")
 			g.Expect(layer).To(test.HaveLayerMetadata(true, true, false))
-			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(BeARegularFile())
+			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(gomega.BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
 		})
 
@@ -80,13 +80,13 @@ func TestJRE(t *testing.T) {
 			})
 
 			j, _, err := jre.NewJRE(f.Build)
-			g.Expect(err).NotTo(HaveOccurred())
+			g.Expect(err).NotTo(gomega.HaveOccurred())
 
-			g.Expect(j.Contribute()).To(Succeed())
+			g.Expect(j.Contribute()).To(gomega.Succeed())
 
 			layer := f.Build.Layers.Layer("openjdk-jre")
 			g.Expect(layer).To(test.HaveLayerMetadata(false, false, true))
-			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(BeARegularFile())
+			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(gomega.BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
 		})
 	}, spec.Report(report.Terminal{}))

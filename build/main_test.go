@@ -21,7 +21,7 @@ import (
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/libcfbuildpack/test"
-	. "github.com/onsi/gomega"
+	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -29,12 +29,12 @@ import (
 func TestBuild(t *testing.T) {
 	spec.Run(t, "Build", func(t *testing.T, _ spec.G, it spec.S) {
 
-		g := NewGomegaWithT(t)
+		g := gomega.NewWithT(t)
 
 		it("always passes", func() {
 			f := test.NewBuildFactory(t)
 
-			g.Expect(b(f.Build)).To(Equal(build.SuccessStatusCode))
+			g.Expect(b(f.Build)).To(gomega.Equal(build.SuccessStatusCode))
 		})
 	}, spec.Report(report.Terminal{}))
 }

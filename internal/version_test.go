@@ -25,35 +25,35 @@ import (
 	"github.com/cloudfoundry/libcfbuildpack/logger"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/cloudfoundry/openjdk-cnb/internal"
-	. "github.com/onsi/gomega"
+	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 )
 
 func TestVersion(t *testing.T) {
 	spec.Run(t, "Version", func(t *testing.T, _ spec.G, it spec.S) {
 
-		g := NewGomegaWithT(t)
+		g := gomega.NewWithT(t)
 
 		it("uses $BP_JAVA_VERSION if set", func() {
 			defer test.ReplaceEnv(t, "BP_JAVA_VERSION", "test-version")()
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
-			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(gomega.Equal("test-version"))
 		})
 
 		it("uses build plan version if set", func() {
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{}, logger.Logger{})
 			dependency := buildplan.Dependency{Version: "test-version"}
 
-			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(gomega.Equal("test-version"))
 		})
 
 		it("uses buildpack default version if set", func() {
 			buildpack := buildpack.NewBuildpack(bp.Buildpack{Metadata: buildpack.Metadata{"default-versions": map[string]interface{}{"test-id": "test-version"}}}, logger.Logger{})
 			dependency := buildplan.Dependency{}
 
-			g.Expect(internal.Version("test-id", dependency, buildpack)).To(Equal("test-version"))
+			g.Expect(internal.Version("test-id", dependency, buildpack)).To(gomega.Equal("test-version"))
 		})
 
 		it("return error if none set", func() {
@@ -61,7 +61,7 @@ func TestVersion(t *testing.T) {
 			dependency := buildplan.Dependency{}
 
 			_, err := internal.Version("test-id", dependency, buildpack)
-			g.Expect(err).To(MatchError("test-id does not map to a string in default-versions map"))
+			g.Expect(err).To(gomega.MatchError("test-id does not map to a string in default-versions map"))
 		})
 	})
 }
