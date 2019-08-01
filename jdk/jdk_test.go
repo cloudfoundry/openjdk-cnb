@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/buildpack/libbuildpack/buildplan"
+	"github.com/cloudfoundry/libcfbuildpack/buildpackplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/onsi/gomega"
@@ -41,7 +41,7 @@ func TestJDK(t *testing.T) {
 
 		it("returns true if build plan exists", func() {
 			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
-			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{})
+			f.AddPlan(buildpackplan.Plan{Name: jdk.Dependency})
 
 			_, ok, err := jdk.NewJDK(f.Build)
 			g.Expect(ok).To(gomega.BeTrue())
@@ -56,7 +56,7 @@ func TestJDK(t *testing.T) {
 
 		it("contributes JDK", func() {
 			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
-			f.AddBuildPlan(jdk.Dependency, buildplan.Dependency{})
+			f.AddPlan(buildpackplan.Plan{Name: jdk.Dependency})
 
 			j, _, err := jdk.NewJDK(f.Build)
 			g.Expect(err).NotTo(gomega.HaveOccurred())

@@ -22,6 +22,8 @@ import (
 
 	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/detect"
+	"github.com/cloudfoundry/openjdk-cnb/jdk"
+	"github.com/cloudfoundry/openjdk-cnb/jre"
 )
 
 func main() {
@@ -40,5 +42,22 @@ func main() {
 }
 
 func d(detect detect.Detect) (int, error) {
-	return detect.Pass(buildplan.BuildPlan{})
+	return detect.Pass(
+		buildplan.Plan{
+			Provides: []buildplan.Provided{
+				{Name: jdk.Dependency},
+				{Name: jre.Dependency},
+			},
+		},
+		buildplan.Plan{
+			Provides: []buildplan.Provided{
+				{Name: jdk.Dependency},
+			},
+		},
+		buildplan.Plan{
+			Provides: []buildplan.Provided{
+				{Name: jre.Dependency},
+			},
+		},
+	)
 }
