@@ -27,6 +27,7 @@ import (
 	"github.com/cloudfoundry/openjdk-cnb/internal"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
+	"github.com/sclevine/spec/report"
 )
 
 func TestVersion(t *testing.T) {
@@ -63,5 +64,5 @@ func TestVersion(t *testing.T) {
 			_, err := internal.Version("test-id", dependency, buildpack)
 			g.Expect(err).To(gomega.MatchError("test-id does not map to a string in default-versions map"))
 		})
-	})
+	}, spec.Report(report.Terminal{}))
 }
