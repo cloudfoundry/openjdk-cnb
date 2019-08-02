@@ -54,7 +54,10 @@ func (j JDK) Contribute() error {
 
 // NewJDK creates a new JDK instance. OK is true if build plan contains "openjdk-jdk" dependency, otherwise false.
 func NewJDK(build build.Build) (JDK, bool, error) {
-	bp, ok := build.BuildPlan[Dependency]
+	p, ok, err := build.Plans.GetShallowMerged(Dependency)
+	if err != nil {
+		return JDK{}, false, err
+	}
 	if !ok {
 		return JDK{}, false, nil
 	}
@@ -64,7 +67,7 @@ func NewJDK(build build.Build) (JDK, bool, error) {
 		return JDK{}, false, err
 	}
 
-	version, err := internal.Version(Dependency, bp, build.Buildpack)
+	version, err := internal.Version(Dependency, p, build.Buildpack)
 	if err != nil {
 		return JDK{}, false, err
 	}

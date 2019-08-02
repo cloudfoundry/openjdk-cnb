@@ -20,7 +20,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/build"
 	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
@@ -60,5 +59,5 @@ func b(build build.Build) (int, error) {
 		}
 	}
 
-	return build.Success(buildplan.BuildPlan{})
+	return build.Success()
 }

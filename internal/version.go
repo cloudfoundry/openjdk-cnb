@@ -19,7 +19,7 @@ package internal
 import (
 	"os"
 
-	"github.com/buildpack/libbuildpack/buildplan"
+	"github.com/buildpack/libbuildpack/buildpackplan"
 	"github.com/cloudfoundry/libcfbuildpack/buildpack"
 )
 
@@ -28,13 +28,13 @@ import (
 // 1. $BP_JAVA_VERSION
 // 2. Build Plan Version
 // 3. Buildpack Metadata "default_versions"
-func Version(id string, dependency buildplan.Dependency, buildpack buildpack.Buildpack) (string, error) {
+func Version(id string, plan buildpackplan.Plan, buildpack buildpack.Buildpack) (string, error) {
 	if version, ok := os.LookupEnv("BP_JAVA_VERSION"); ok {
 		return version, nil
 	}
 
-	if dependency.Version != "" {
-		return dependency.Version, nil
+	if plan.Version != "" {
+		return plan.Version, nil
 	}
 
 	return buildpack.DefaultVersion(id)

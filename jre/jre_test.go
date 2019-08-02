@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/buildpack/libbuildpack/buildplan"
+	"github.com/cloudfoundry/libcfbuildpack/buildpackplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
 	"github.com/onsi/gomega"
@@ -41,7 +41,7 @@ func TestJRE(t *testing.T) {
 
 		it("returns true if build plan exists", func() {
 			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
-			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{})
+			f.AddPlan(buildpackplan.Plan{Name: jre.Dependency})
 
 			_, ok, err := jre.NewJRE(f.Build)
 			g.Expect(ok).To(gomega.BeTrue())
@@ -58,8 +58,9 @@ func TestJRE(t *testing.T) {
 
 		it("contributes JRE to build", func() {
 			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
-			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{
-				Metadata: buildplan.Metadata{jre.BuildContribution: true},
+			f.AddPlan(buildpackplan.Plan{
+				Name:     jre.Dependency,
+				Metadata: buildpackplan.Metadata{jre.BuildContribution: true},
 			})
 
 			j, _, err := jre.NewJRE(f.Build)
@@ -75,8 +76,9 @@ func TestJRE(t *testing.T) {
 
 		it("contributes JRE to launch", func() {
 			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jre.tar.gz"))
-			f.AddBuildPlan(jre.Dependency, buildplan.Dependency{
-				Metadata: buildplan.Metadata{jre.LaunchContribution: true},
+			f.AddPlan(buildpackplan.Plan{
+				Name:     jre.Dependency,
+				Metadata: buildpackplan.Metadata{jre.LaunchContribution: true},
 			})
 
 			j, _, err := jre.NewJRE(f.Build)
