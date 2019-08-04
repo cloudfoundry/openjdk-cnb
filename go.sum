@@ -4,8 +4,8 @@ github.com/Masterminds/semver v1.4.2 h1:WBLTQ37jOCzSLtXNdoo8bNM8876KhNqOKvrlGITg
 github.com/Masterminds/semver v1.4.2/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF078ddwwvV3Y=
 github.com/buildpack/libbuildpack v1.21.0 h1:94d0/8Xv8Pp2dwFHSKNrFyXYHM01IHpuRE0N0ezWrr4=
 github.com/buildpack/libbuildpack v1.21.0/go.mod h1:dEDd9Dbp681Gcb39omBAZdsuHZ5YFMgurKGkgxEVzVo=
-github.com/cloudfoundry/libcfbuildpack v1.81.0 h1:drGk6u8/OJoHAophh4Ej+7H4HuAQYlZpIZm8IRujz7g=
-github.com/cloudfoundry/libcfbuildpack v1.81.0/go.mod h1:ueWY6ccz9BqhNddjLbRhM2humVOa/zv/QdwWnPYzvfI=
+github.com/cloudfoundry/libcfbuildpack v1.82.0 h1:bqwzRtZp3Be/AB8B4lsMv6PQgvEH64N4UvRvlNtacCc=
+github.com/cloudfoundry/libcfbuildpack v1.82.0/go.mod h1:c3ag+OHs0rnwh7C7kMXw3xsGRVLDvm9LfdoRR5tAnko=
 github.com/fatih/color v1.7.0 h1:DkWD4oS2D8LGGgTQ6IvwJJXSL5Vp2ffcQg58nFV38Ys=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
@@ -46,6 +46,8 @@ golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3 h1:4y9KwBHBgBNwDbtu44R5o1fdOCQUEXhbk/P4A9WmJq0=
 golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa h1:KIDDMLT1O0Nr7TSxp8xM5tJcdn8tgyAONntO829og1M=
+golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=

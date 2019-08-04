@@ -19,8 +19,11 @@ package main
 import (
 	"testing"
 
+	"github.com/buildpack/libbuildpack/buildplan"
 	"github.com/cloudfoundry/libcfbuildpack/detect"
 	"github.com/cloudfoundry/libcfbuildpack/test"
+	"github.com/cloudfoundry/openjdk-cnb/jdk"
+	"github.com/cloudfoundry/openjdk-cnb/jre"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
@@ -35,6 +38,24 @@ func TestDetect(t *testing.T) {
 			f := test.NewDetectFactory(t)
 
 			g.Expect(d(f.Detect)).To(gomega.Equal(detect.PassStatusCode))
+			g.Expect(f.Plans).To(test.HavePlans(
+				buildplan.Plan{
+					Provides: []buildplan.Provided{
+						{Name: jdk.Dependency},
+						{Name: jre.Dependency},
+					},
+				},
+				buildplan.Plan{
+					Provides: []buildplan.Provided{
+						{Name: jdk.Dependency},
+					},
+				},
+				buildplan.Plan{
+					Provides: []buildplan.Provided{
+						{Name: jre.Dependency},
+					},
+				},
+			))
 		})
 	}, spec.Report(report.Terminal{}))
 }
