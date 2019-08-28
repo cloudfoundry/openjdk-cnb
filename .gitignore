@@ -15,4 +15,5 @@
 .idea/
 bin/
 dependency-cache/
+packaged-cnb/
 scratch/
