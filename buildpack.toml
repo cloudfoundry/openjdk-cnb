@@ -102,7 +102,7 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
   uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
 [metadata]
-pre_package   = "ci/build.sh"
+pre_package   = "scripts/build.sh"
 include_files = [
   "LICENSE",
   "NOTICE",
