@@ -22,7 +22,6 @@ import (
 
 	"github.com/cloudfoundry/libcfbuildpack/buildpackplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
-	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
@@ -94,7 +93,7 @@ func TestJRE(t *testing.T) {
 		})
 
 		it("contributes JDK to launch", func() {
-			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
+			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
 			f.AddPlan(buildpackplan.Plan{
 				Name:     jre.Dependency,
 				Metadata: buildpackplan.Metadata{jre.LaunchContribution: true},
@@ -105,7 +104,7 @@ func TestJRE(t *testing.T) {
 
 			g.Expect(j.Contribute()).To(gomega.Succeed())
 
-			layer := f.Build.Layers.Layer("openjdk-jdk")
+			layer := f.Build.Layers.Layer("openjdk-jre")
 			g.Expect(layer).To(test.HaveLayerMetadata(false, false, true))
 			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(gomega.BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))

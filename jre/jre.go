@@ -99,6 +99,7 @@ func NewJRE(build build.Build) (JRE, bool, error) {
 
 		build.Logger.HeaderWarning("No valid JRE available, providing matching JDK instead. Using a JDK at runtime has security implications.")
 		dep = dep2
+		dep.ID = Dependency
 	}
 
 	jre := JRE{layer: build.Layers.DependencyLayer(dep)}
