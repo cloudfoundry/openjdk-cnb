@@ -22,6 +22,7 @@ import (
 
 	"github.com/cloudfoundry/libcfbuildpack/buildpackplan"
 	"github.com/cloudfoundry/libcfbuildpack/test"
+	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"
@@ -93,7 +94,7 @@ func TestJRE(t *testing.T) {
 		})
 
 		it("contributes JDK to launch", func() {
-			f.AddDependency(jre.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
+			f.AddDependency(jdk.Dependency, filepath.Join("testdata", "stub-openjdk-jdk.tar.gz"))
 			f.AddPlan(buildpackplan.Plan{
 				Name:     jre.Dependency,
 				Metadata: buildpackplan.Metadata{jre.LaunchContribution: true},
