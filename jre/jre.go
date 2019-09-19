@@ -21,6 +21,7 @@ import (
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
 	"github.com/cloudfoundry/openjdk-cnb/internal"
+	"github.com/cloudfoundry/openjdk-cnb/jdk"
 )
 
 const (
@@ -91,7 +92,13 @@ func NewJRE(build build.Build) (JRE, bool, error) {
 
 	dep, err := deps.Best(Dependency, version, build.Stack)
 	if err != nil {
-		return JRE{}, false, err
+		dep2, err2 := deps.Best(jdk.Dependency, version, build.Stack)
+		if err2 != nil {
+			return JRE{}, false, err
+		}
+
+		build.Logger.HeaderWarning("No valid JRE available, providing matching JDK instead. Using a JDK at runtime has security implications.")
+		dep = dep2
 	}
 
 	jre := JRE{layer: build.Layers.DependencyLayer(dep)}
