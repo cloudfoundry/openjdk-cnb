@@ -68,9 +68,9 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
 [[metadata.dependencies]]
 id      = "openjdk-jdk"
 name    = "OpenJDK JDK"
-version = "8.0.172"
-uri     = "https://github.com/AdoptOpenJDK/openjdk8-releases/releases/download/jdk8u172-b11/OpenJDK8_x64_Linux_jdk8u172-b11.tar.gz"
-sha256  = "228d85bef36f5893885b52cb571101418c4f8b87c689996ace55d85b720b2a12"
+version = "8.0.222"
+uri     = "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u222-b10/OpenJDK8U-jdk_x64_linux_hotspot_8u222b10.tar.gz"
+sha256  = "37356281345b93feb4212e6267109b4409b55b06f107619dde4960e402bafa77"
 stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
 
   [[metadata.dependencies.licenses]]
