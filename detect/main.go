@@ -34,7 +34,7 @@ func main() {
 	}
 
 	if code, err := d(detect); err != nil {
-		detect.Logger.Info(err.Error())
+		detect.Logger.TerminalError(detect.Buildpack, err.Error())
 		os.Exit(code)
 	} else {
 		os.Exit(code)

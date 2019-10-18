@@ -33,7 +33,7 @@ func main() {
 	}
 
 	if code, err := b(build); err != nil {
-		build.Logger.Info(err.Error())
+		build.Logger.TerminalError(build.Buildpack, err.Error())
 		os.Exit(code)
 	} else {
 		os.Exit(code)
