@@ -17,7 +17,6 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/Masterminds/semver v1.5.0 h1:H65muMkzWKEuNDnfl9d70GUjFniHKHRbFPGBuZ3QEww=
 github.com/Masterminds/semver v1.5.0/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF078ddwwvV3Y=
-github.com/buildpack/libbuildpack v1.25.3 h1:P4J5WizNLWa1kt558aSWtGZw3HIt37nsYtrsHUzsDFY=
 github.com/buildpack/libbuildpack v1.25.3/go.mod h1:cBmq8aozSDfy+RiKCERQbT6lk0M/Xf3aJWK2PLbPG1g=
 github.com/buildpack/libbuildpack v1.25.4 h1:jlflYJWNy+WFup6/6v4ErOG6y8+4OVAb7ie/ECM5bBs=
 github.com/buildpack/libbuildpack v1.25.4/go.mod h1:GhVefAW5VEN0L2AWrupSzwMUeKd3N0UzT45oUAKcPCM=
