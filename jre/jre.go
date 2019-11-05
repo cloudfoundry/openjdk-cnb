@@ -76,6 +76,9 @@ func (j JRE) flags() []layers.Flag {
 // NewJRE creates a new JRE instance. OK is true if build plan contains "openjdk-jre" dependency, otherwise false.
 func NewJRE(build build.Build) (JRE, bool, error) {
 	p, ok, err := build.Plans.GetShallowMerged(Dependency)
+	if err != nil {
+		return JRE{}, false, err
+	}
 	if !ok {
 		return JRE{}, false, nil
 	}
