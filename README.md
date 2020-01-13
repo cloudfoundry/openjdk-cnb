@@ -3,29 +3,31 @@ The Cloud Foundry OpenJDK Buildpack is a Cloud Native Buildpack V3 that provides
 
 This buildpack is designed to work in collaboration with other buildpacks which request contributions of JREs and JDKs.
 
-## Detection
-The detection phase always passes and contributes nothing to the build plan, depending on other buildpacks to request
-contributions.
+## Behavior
+This buildpack will participate if any of the following conditions are met
 
-## Build
-If the build plan contains
+* Another buildpack requires `openjdk-jdk`
+* Another buildpack requires `openjdk-jre`
 
-* `openjdk-jdk`
-  * Contributes a JDK to a layer marked `build` and `cache` with all commands on `$PATH`
-  * If `$BP_JAVA_VERSION` is set, configures a specific version.  This value must _exactly_ match a version available in
-    the buildpack so typically it would configured to a wildcard such as `8.*`.
-  * Contributes `$JAVA_HOME` configured to the build layer
-  * Contributes `$JDK_HOME` configure to the build layer
+The buildpack will do the following if a JDK is requested:
 
-* `openjdk-jre`
-  * Contributes a JRE to a layer with all commands on `$PATH`
-  * If `$BP_JAVA_VERSION` is set, configures a specific version.  This value must _exactly_ match a version available in
-    the buildpack so typically it would configured to a wildcard such as `8.*`.
-  * Contributes `$JAVA_HOME` configured to the layer
-  * If `metadata.build = true`
-    * Marks layer as `build` and `cache`
-  * If `metadata.launch = true`
-    * Marks layer as `launch`
+* Contributes a JDK to a layer marked `build` and `cache` with all commands on `$PATH`
+* Contributes `$JAVA_HOME` configured to the build layer
+* Contributes `$JDK_HOME` configure to the build layer
+
+The buildpack will do the following if a JRE is requested:
+
+* Contributes a JRE to a layer with all commands on `$PATH`
+* Contributes `$JAVA_HOME` configured to the layer
+* If `metadata.build = true`
+  * Marks layer as `build` and `cache`
+* If `metadata.launch = true`
+  * Marks layer as `launch`
+
+## Configuration 
+| Environment Variable | Description
+| -------------------- | -----------
+| `$BP_JAVA_VERSION` | Configure a specific JDK or JRE version.  This value must _exactly_ match a version available in the buildpack so typically it would configured to a wildcard such as `8.*`.
 
 ## License
 This buildpack is released under version 2.0 of the [Apache License][a].
