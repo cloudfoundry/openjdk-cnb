@@ -19,11 +19,11 @@ package internal_test
 import (
 	"testing"
 
-	bp "github.com/buildpack/libbuildpack/buildpack"
-	"github.com/buildpack/libbuildpack/buildpackplan"
-	"github.com/cloudfoundry/libcfbuildpack/buildpack"
-	"github.com/cloudfoundry/libcfbuildpack/logger"
-	"github.com/cloudfoundry/libcfbuildpack/test"
+	bp "github.com/buildpacks/libbuildpack/v2/buildpack"
+	"github.com/buildpacks/libbuildpack/v2/buildpackplan"
+	"github.com/cloudfoundry/libcfbuildpack/v2/buildpack"
+	"github.com/cloudfoundry/libcfbuildpack/v2/logger"
+	"github.com/cloudfoundry/libcfbuildpack/v2/test"
 	"github.com/cloudfoundry/openjdk-cnb/internal"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"

@@ -19,8 +19,8 @@ package internal
 import (
 	"os"
 
-	"github.com/buildpack/libbuildpack/buildpackplan"
-	"github.com/cloudfoundry/libcfbuildpack/buildpack"
+	"github.com/buildpacks/libbuildpack/v2/buildpackplan"
+	"github.com/cloudfoundry/libcfbuildpack/v2/buildpack"
 )
 
 // Version returns the selected version of Java using the following precedence:

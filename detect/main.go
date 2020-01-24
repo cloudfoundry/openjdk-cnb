@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/buildpack/libbuildpack/buildplan"
-	"github.com/cloudfoundry/libcfbuildpack/detect"
+	"github.com/buildpacks/libbuildpack/v2/buildplan"
+	"github.com/cloudfoundry/libcfbuildpack/v2/detect"
 	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
 )

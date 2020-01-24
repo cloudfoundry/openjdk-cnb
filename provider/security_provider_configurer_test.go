@@ -21,8 +21,8 @@ import (
 	"testing"
 
 	"github.com/Masterminds/semver"
-	"github.com/cloudfoundry/libcfbuildpack/buildpack"
-	"github.com/cloudfoundry/libcfbuildpack/test"
+	"github.com/cloudfoundry/libcfbuildpack/v2/buildpack"
+	"github.com/cloudfoundry/libcfbuildpack/v2/test"
 	"github.com/cloudfoundry/openjdk-cnb/provider"
 	"github.com/onsi/gomega"
 	"github.com/sclevine/spec"

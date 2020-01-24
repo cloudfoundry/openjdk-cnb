@@ -25,7 +25,7 @@ import (
 	"strconv"
 
 	"github.com/Masterminds/semver"
-	"github.com/cloudfoundry/libcfbuildpack/helper"
+	"github.com/cloudfoundry/libcfbuildpack/v2/helper"
 	"github.com/magiconair/properties"
 )
 

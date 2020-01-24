@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cloudfoundry/libcfbuildpack/build"
+	"github.com/cloudfoundry/libcfbuildpack/v2/build"
 	"github.com/cloudfoundry/openjdk-cnb/dns"
 	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
