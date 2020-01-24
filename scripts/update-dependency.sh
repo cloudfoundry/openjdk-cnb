@@ -1,5 +1,5 @@
 version() {
-  local PATTERN="([0-9]+)\.([0-9]+)\.([0-9]+)\+(.*)"
+  local PATTERN="([0-9]+)\.([0-9]+)\.([0-9]+)(.*)"
 
   for VERSION in $(cat "../dependency/version"); do
       if [[ ${VERSION} =~ ${PATTERN} ]]; then
