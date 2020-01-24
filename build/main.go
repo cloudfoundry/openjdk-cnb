@@ -21,8 +21,13 @@ import (
 	"os"
 
 	"github.com/cloudfoundry/libcfbuildpack/build"
+	"github.com/cloudfoundry/openjdk-cnb/dns"
 	"github.com/cloudfoundry/openjdk-cnb/jdk"
 	"github.com/cloudfoundry/openjdk-cnb/jre"
+	"github.com/cloudfoundry/openjdk-cnb/jvmkill"
+	"github.com/cloudfoundry/openjdk-cnb/memcalc"
+	"github.com/cloudfoundry/openjdk-cnb/provider"
+	"github.com/cloudfoundry/openjdk-cnb/security"
 )
 
 func main() {
@@ -56,6 +61,43 @@ func b(build build.Build) (int, error) {
 	} else if ok {
 		if err := jre.Contribute(); err != nil {
 			return build.Failure(103), err
+		}
+
+		s := security.NewSecurity(build)
+		if err := s.Contribute(); err != nil {
+			return build.Failure(103), err
+		}
+
+		if p, ok, err := provider.NewSecurityProviderConfigurer(build, jre.Dependency, s.Target()); err != nil {
+			return build.Failure(102), err
+		} else if ok {
+			if err := p.Contribute(); err != nil {
+				return build.Failure(103), err
+			}
+		}
+
+		if err := dns.NewLinkLocalDNS(build, s.Target()).Contribute(); err != nil {
+			return build.Failure(103), err
+		}
+
+		if kill, err := jvmkill.NewJVMKill(build); err != nil {
+			return build.Failure(102), err
+		} else {
+			if err := kill.Contribute(); err != nil {
+				return build.Failure(103), err
+			}
+		}
+
+		if err := memcalc.NewClassCounter(build).Contribute(); err != nil {
+			return build.Failure(103), err
+		}
+
+		if mc, err := memcalc.NewMemoryCalculator(build); err != nil {
+			return build.Failure(102), err
+		} else {
+			if err := mc.Contribute(); err != nil {
+				return build.Failure(103), err
+			}
 		}
 	}
 

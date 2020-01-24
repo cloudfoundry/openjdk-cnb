@@ -101,6 +101,30 @@ stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" 
   type = "GPL-2.0 WITH Classpath-exception-2.0"
   uri  = "https://openjdk.java.net/legal/gplv2+ce.html"
 
+[[metadata.dependencies]]
+id      = "jvmkill"
+name    = "JVMKill Agent"
+version = "1.16.0"
+uri     = "https://java-buildpack.cloudfoundry.org/jvmkill/bionic/x86_64/jvmkill-1.16.0_RELEASE.so"
+sha256  = "a3092627b082cb3cdbbe4b255d35687126aa604e6b613dcda33be9f7e1277162"
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
+
+  [[metadata.dependencies.licenses]]
+  type = "Apache-2.0"
+  uri  = "https://github.com/cloudfoundry/jvmkill/blob/master/LICENSE"
+
+[[metadata.dependencies]]
+id      = "memory-calculator"
+name    = "Memory Calculator"
+version = "4.0.0"
+uri     = "https://repo.spring.io/libs-release-local/org/cloudfoundry/java-buildpack-memory-calculator/4.0.0/java-buildpack-memory-calculator-4.0.0.tgz"
+sha256  = "90d40eab6959a7b4059c6409c4505040e8a04f75a481f7282e53430df3edda3e"
+stacks  = [ "io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3" ]
+
+  [[metadata.dependencies.licenses]]
+  type = "Apache-2.0"
+  uri  = "https://github.com/cloudfoundry/java-buildpack-memory-calculator/blob/master/LICENSE"
+
 [metadata]
 pre_package   = "scripts/build.sh"
 include_files = [
@@ -108,6 +132,9 @@ include_files = [
   "NOTICE",
   "README.md",
   "bin/build",
+  "bin/class-counter",
   "bin/detect",
+  "bin/link-local-dns",
+  "bin/security-provider-configurer",
   "buildpack.toml",
 ]

@@ -9,3 +9,6 @@ fi
 
 GOOS="linux" go build -ldflags='-s -w' -o bin/build build/main.go
 GOOS="linux" go build -ldflags='-s -w' -o bin/detect detect/main.go
+GOOS="linux" go build -ldflags='-s -w' -o bin/class-counter memcalc/helper/main.go
+GOOS="linux" go build -ldflags='-s -w' -o bin/link-local-dns dns/helper/main.go
+GOOS="linux" go build -ldflags='-s -w' -o bin/security-provider-configurer provider/helper/main.go

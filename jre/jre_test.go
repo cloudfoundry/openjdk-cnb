@@ -63,6 +63,7 @@ func TestJRE(t *testing.T) {
 				Name:     jre.Dependency,
 				Metadata: buildpackplan.Metadata{jre.BuildContribution: true},
 			})
+			test.TouchFile(t, f.Build.Buildpack.Root, "bin", "local-dns")
 
 			j, _, err := jre.NewJRE(f.Build)
 			g.Expect(err).NotTo(gomega.HaveOccurred())
@@ -73,6 +74,8 @@ func TestJRE(t *testing.T) {
 			g.Expect(layer).To(test.HaveLayerMetadata(true, true, false))
 			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(gomega.BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
+			g.Expect(layer).To(test.HaveProfile("active-processor-count", `export JAVA_OPTS="$JAVA_OPTS -XX:ActiveProcessorCount=$(nproc)"`))
+			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("MALLOC_ARENA_MAX", "2"))
 		})
 
 		it("contributes JRE to launch", func() {
@@ -81,6 +84,7 @@ func TestJRE(t *testing.T) {
 				Name:     jre.Dependency,
 				Metadata: buildpackplan.Metadata{jre.LaunchContribution: true},
 			})
+			test.TouchFile(t, f.Build.Buildpack.Root, "bin", "local-dns")
 
 			j, _, err := jre.NewJRE(f.Build)
 			g.Expect(err).NotTo(gomega.HaveOccurred())
@@ -91,6 +95,8 @@ func TestJRE(t *testing.T) {
 			g.Expect(layer).To(test.HaveLayerMetadata(false, false, true))
 			g.Expect(filepath.Join(layer.Root, "fixture-marker")).To(gomega.BeARegularFile())
 			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("JAVA_HOME", layer.Root))
+			g.Expect(layer).To(test.HaveProfile("active-processor-count", `export JAVA_OPTS="$JAVA_OPTS -XX:ActiveProcessorCount=$(nproc)"`))
+			g.Expect(layer).To(test.HaveOverrideSharedEnvironment("MALLOC_ARENA_MAX", "2"))
 		})
 
 		it("contributes JDK to launch", func() {

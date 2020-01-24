@@ -18,6 +18,7 @@ package jre
 
 import (
 	"github.com/cloudfoundry/libcfbuildpack/build"
+	"github.com/cloudfoundry/libcfbuildpack/buildpack"
 	"github.com/cloudfoundry/libcfbuildpack/helper"
 	"github.com/cloudfoundry/libcfbuildpack/layers"
 	"github.com/cloudfoundry/openjdk-cnb/internal"
@@ -37,6 +38,9 @@ const (
 
 // JRE represents a JRE contribution by the buildpack.
 type JRE struct {
+	// Dependency is the dependency to be contributed.
+	Dependency buildpack.Dependency
+
 	buildContribution  bool
 	layer              layers.DependencyLayer
 	launchContribution bool
@@ -52,6 +56,14 @@ func (j JRE) Contribute() error {
 		}
 
 		if err := layer.OverrideSharedEnv("JAVA_HOME", layer.Root); err != nil {
+			return err
+		}
+
+		if err := layer.OverrideSharedEnv("MALLOC_ARENA_MAX", "2"); err != nil {
+			return err
+		}
+
+		if err := layer.WriteProfile("active-processor-count", `export JAVA_OPTS="$JAVA_OPTS -XX:ActiveProcessorCount=$(nproc)"`); err != nil {
 			return err
 		}
 
@@ -104,7 +116,7 @@ func NewJRE(build build.Build) (JRE, bool, error) {
 		dep = dep2
 	}
 
-	jre := JRE{layer: build.Layers.DependencyLayerWithID(Dependency, dep)}
+	jre := JRE{Dependency: dep, layer: build.Layers.DependencyLayerWithID(Dependency, dep)}
 
 	if _, ok := p.Metadata[BuildContribution]; ok {
 		jre.buildContribution = true
