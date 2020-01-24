@@ -10,4 +10,5 @@ require (
 	github.com/miekg/dns v1.1.27
 	github.com/onsi/gomega v1.8.1
 	github.com/sclevine/spec v1.4.0
+	golang.org/x/crypto v0.0.0-20200117160349-530e935923ad // indirect
 )
