@@ -38,7 +38,7 @@ type MemoryCalculator struct {
 func (m MemoryCalculator) Contribute() error {
 	return m.layer.Contribute(func(artifact string, layer layers.DependencyLayer) error {
 		layer.Logger.LaunchConfiguration("Set $BPL_HEAD_ROOM to configure", "0")
-		layer.Logger.LaunchConfiguration("Set $BPL_LOADED_CLASS_COUNT to configure", "35% of classes")
+		layer.Logger.LaunchConfiguration("Set $BPL_LOADED_CLASS_COUNT to configure", "35%% of classes")
 		layer.Logger.LaunchConfiguration("Set $BPL_THREAD_COUNT to configure", "250")
 
 		layer.Logger.Body("Expanding to %s", layer.Root)
