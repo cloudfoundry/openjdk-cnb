@@ -24,8 +24,10 @@ github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWR
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=
 github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudfoundry/libcfbuildpack/v2 v2.1.6 h1:ATeIpz549I6AnGovsi8Ai+IUDzNfcXxntUyrSzXoP5g=
-github.com/cloudfoundry/libcfbuildpack/v2 v2.1.6/go.mod h1:H8kBhhtRt2j6VQG1GnFTe7+wsTCuplH98gUs4SZqcX0=
+github.com/cloudfoundry/libcfbuildpack/v2 v2.1.7 h1://sAtIUGB5c8EKaI0FBwAnC/+XW5orUu1tQo6wjSkPU=
+github.com/cloudfoundry/libcfbuildpack/v2 v2.1.7/go.mod h1:2Oj5vCnmunL+9Lx88rCga82WQeq6fpIeXL861EfaXus=
+github.com/creack/pty v1.1.9 h1:uDmaGzcdjhF4i/plgjmEsriH11Y0o7RKapEf/LDaM3w=
+github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
